@@ -1,21 +1,54 @@
-// to be used in conjunction w/ useInput hook
+import { useInput } from "../hooks/useInput";
 
 export default function Signup() {
+  const {
+    value: email,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    inputReset: emailReset,
+  } = useInput("email");
+
+  const {
+    value: password,
+    isValid: passwordIsValid,
+    hasError: passwordHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    inputReset: passwordReset,
+  } = useInput("password");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!emailIsValid || !passwordIsValid) {
+      return;
+    }
+    emailReset();
+    passwordReset();
+  };
+
   return (
     <div className="#">
       <div className="#">
         <h3 className="#">Sign up</h3>
-        <form className="#" action="#">
+        <form className="#" action="#" onSubmit={handleSubmit}>
           <div className="#">
             <label htmlFor="email">Email:</label>
             <input
               className="#"
               type="email"
+              value={email}
               name="email"
               id="email"
               placeholder="email@email.com"
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHandler}
               required
             />
+            {emailHasError && (
+              <p className="error-text">Please enter a valid email.</p>
+            )}
           </div>
           <div className="#">
             <label htmlFor="password">Password:</label>
@@ -23,12 +56,25 @@ export default function Signup() {
               className="#"
               type="password"
               name="password"
+              value={password}
               id="password"
               placeholder="••••••••"
+              onChange={passwordChangeHandler}
+              onBlur={passwordBlurHandler}
               required
             />
           </div>
-          <button className="#" type="submit">
+          {passwordHasError && (
+            <p className="error-text">
+              Password must be more than 8 characters long, include an uppercase
+              letter, a number, and a special character.
+            </p>
+          )}
+          <button
+            className="#"
+            type="submit"
+            disabled={!emailIsValid || !passwordIsValid}
+          >
             Create account
           </button>
         </form>
