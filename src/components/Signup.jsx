@@ -18,17 +18,6 @@ export default function Signup() {
             />
           </div>
           <div className="#">
-            <label htmlFor="username">Username:</label>
-            <input
-              className="#"
-              type="text"
-              name="username"
-              id="username"
-              placeholder="LimpHampster"
-              required
-            />
-          </div>
-          <div className="#">
             <label htmlFor="password">Password:</label>
             <input
               className="#"
