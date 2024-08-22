@@ -1,4 +1,4 @@
-// to be used with form component
+// to be used with singup/login form component
 import { useState } from "react";
 
 export function useInput(type) {
