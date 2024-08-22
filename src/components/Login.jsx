@@ -1,6 +1,11 @@
+// remove below comment before using
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authProvider";
 import { useInput } from "../hooks/useInput";
 
-export default function Login() {
+function Login() {
   const {
     value: email,
     isValid: emailIsValid,
@@ -19,10 +24,34 @@ export default function Login() {
     inputReset: passwordReset,
   } = useInput("password");
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { setToken } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailIsValid || !passwordIsValid) {
       return;
+    }
+
+    try {
+      const response = await fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setToken(data.token);
+        navigate("");
+      } else {
+        setError(data.message || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      setError("Request failed. Please try again.");
     }
     emailReset();
     passwordReset();
@@ -67,15 +96,18 @@ export default function Login() {
           {passwordHasError && (
             <p className="error-text">Please enter a valid password.</p>
           )}
+          {error && <p className="">{error}</p>}
           <button
             className="#"
             type="submit"
             disabled={!emailIsValid || !passwordIsValid}
           >
-            Create account
+            Login
           </button>
         </form>
       </div>
     </div>
   );
 }
+
+export default Login;
