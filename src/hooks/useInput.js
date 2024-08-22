@@ -1,7 +1,7 @@
 // to be used with singup/login form component
 import { useState } from "react";
 
-export function useInput(type) {
+function useInput(type) {
   const [enteredValue, setEnteredValue] = useState("");
   const [isTouched, setIsTouched] = useState(false);
 
@@ -41,3 +41,5 @@ export function useInput(type) {
     inputReset,
   };
 }
+
+export default useInput;
