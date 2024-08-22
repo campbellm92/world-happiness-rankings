@@ -1,6 +1,11 @@
+//remove the below comment before using
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authProvider";
 import { useInput } from "../hooks/useInput";
 
-export default function Signup() {
+function Signup() {
   const {
     value: email,
     isValid: emailIsValid,
@@ -19,24 +24,49 @@ export default function Signup() {
     inputReset: passwordReset,
   } = useInput("password");
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { setToken } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailIsValid || !passwordIsValid) {
       return;
+    }
+
+    try {
+      const response = await fetch("", {
+        // needs a value
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setToken(data.token);
+        navigate(""); // needs a value
+      } else {
+        setError(data.message || "Sign up failed. Please try again.");
+      }
+    } catch (error) {
+      setError("Request failed. Please try again.");
     }
     emailReset();
     passwordReset();
   };
 
   return (
-    <div className="#">
-      <div className="#">
-        <h3 className="#">Sign up</h3>
-        <form className="#" action="#" onSubmit={handleSubmit}>
-          <div className="#">
+    <div className="">
+      <div className="">
+        <h3 className="">Sign up</h3>
+        <form className="" action="" onSubmit={handleSubmit}>
+          <div className="">
             <label htmlFor="email">Email:</label>
             <input
-              className="#"
+              className=""
               type="email"
               value={email}
               name="email"
@@ -46,14 +76,12 @@ export default function Signup() {
               onBlur={emailBlurHandler}
               required
             />
-            {emailHasError && (
-              <p className="error-text">Please enter a valid email.</p>
-            )}
+            {emailHasError && <p className="">Please enter a valid email.</p>}
           </div>
-          <div className="#">
+          <div className="">
             <label htmlFor="password">Password:</label>
             <input
-              className="#"
+              className=""
               type="password"
               name="password"
               value={password}
@@ -65,13 +93,14 @@ export default function Signup() {
             />
           </div>
           {passwordHasError && (
-            <p className="error-text">
+            <p className="">
               Password must be more than 8 characters long, include an uppercase
               letter, a number, and a special character.
             </p>
           )}
+          {error && <p className="">{error}</p>}
           <button
-            className="#"
+            className=""
             type="submit"
             disabled={!emailIsValid || !passwordIsValid}
           >
@@ -82,3 +111,5 @@ export default function Signup() {
     </div>
   );
 }
+
+export default Signup;
