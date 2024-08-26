@@ -18,5 +18,11 @@ You can: copy and paste the elements you want from individual files, or
 clone the repo:
 
 ```bash
+git clone git@github.com:campbellm92/react-boilerplate.git
+```
 
+and install dependencies:
+
+```bash
+npm install
 ```
