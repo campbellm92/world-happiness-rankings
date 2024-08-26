@@ -1,34 +1,24 @@
-//import { useState } from "react";
-import "./App.css";
-//import { useFetch } from "./hooks/useFetch";
-import Signup from "./components/Signup";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./custom.scss";
+import { Container } from "react-bootstrap";
+import Home from "./pages/Home/Home";
+import Header from "./components/react-bootstrap-components/Header-bs";
+import Footer from "./components/react-bootstrap-components/Footer-bs";
 
 function App() {
-  // const key = import.meta.env.VITE_WEATHER_API_KEY;
-  // const city = "asti";
-  // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
-
-  // const { data, fetchPending, error } = useFetch(url);
-
-  // if (fetchPending) return <p>Loading data...</p>;
-  // if (error) return <p>Error fetching data: {error}</p>;
-
-  // return (
-  //   <div>
-  //     <h1>Weather in {city}</h1>
-  //     {data && (
-  //       <div>
-  //         <p>Temp: {data.main.temp}</p>
-  //         <p>Weather: {data.weather[0].description}</p>
-  //         <p>Humidity {data.main.humidity}</p>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
   return (
-    <div>
-      <Signup />
-    </div>
+    <BrowserRouter>
+      <div className="">
+        <Header />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Container>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
