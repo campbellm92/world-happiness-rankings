@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./custom.scss";
+import "./assets/styles/custom.scss";
 import { Container } from "react-bootstrap";
 import Home from "./pages/Home/Home";
-import Header from "./components/react-bootstrap-components/Header-bs";
-import Footer from "./components/react-bootstrap-components/Footer-bs";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import Signup from "./components/auth/Signup";
+import Login from "./components/auth/Login";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Container>
         <Footer />
