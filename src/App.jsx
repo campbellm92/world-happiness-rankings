@@ -9,7 +9,7 @@ import Footer from "./components/react-bootstrap-components/Footer-bs";
 function App() {
   return (
     <BrowserRouter>
-      <div className="">
+      <div className="d-flex flex-column">
         <Header />
         <Container>
           <Routes>
