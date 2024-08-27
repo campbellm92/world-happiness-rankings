@@ -1,11 +1,11 @@
-//remove the below comment before using
+// remove below comment before using
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authProvider";
-import { useInput } from "../hooks/useInput";
+import { useAuth } from "../../context/authProvider";
+import { useInput } from "../../hooks/useInput";
 
-function Signup() {
+function Login() {
   const {
     value: email,
     isValid: emailIsValid,
@@ -36,7 +36,6 @@ function Signup() {
 
     try {
       const response = await fetch("", {
-        // fetch needs a value
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,9 +46,9 @@ function Signup() {
 
       if (response.ok) {
         setToken(data.token);
-        navigate(""); // navigate needs a value
+        navigate("");
       } else {
-        setError(data.message || "Sign up failed. Please try again.");
+        setError(data.message || "Login failed. Please try again.");
       }
     } catch (error) {
       setError("Request failed. Please try again.");
@@ -59,14 +58,14 @@ function Signup() {
   };
 
   return (
-    <div className="">
-      <div className="">
-        <h3 className="">Sign up</h3>
-        <form className="" action="" onSubmit={handleSubmit}>
-          <div className="">
+    <div className="#">
+      <div className="#">
+        <h3 className="#">Log in</h3>
+        <form className="#" action="#" onSubmit={handleSubmit}>
+          <div className="#">
             <label htmlFor="email">Email:</label>
             <input
-              className=""
+              className="#"
               type="email"
               value={email}
               name="email"
@@ -76,12 +75,14 @@ function Signup() {
               onBlur={emailBlurHandler}
               required
             />
-            {emailHasError && <p className="">Please enter a valid email.</p>}
+            {emailHasError && (
+              <p className="error-text">Please enter a valid email.</p>
+            )}
           </div>
-          <div className="">
+          <div className="#">
             <label htmlFor="password">Password:</label>
             <input
-              className=""
+              className="#"
               type="password"
               name="password"
               value={password}
@@ -93,18 +94,17 @@ function Signup() {
             />
           </div>
           {passwordHasError && (
-            <p className="">
-              Password must be more than 8 characters long, include an uppercase
-              letter, a number, and a special character.
+            <p className="error-text">
+              The password you have entered is incorrect. Please try again.
             </p>
           )}
           {error && <p className="">{error}</p>}
           <button
-            className=""
+            className="#"
             type="submit"
             disabled={!emailIsValid || !passwordIsValid}
           >
-            Create account
+            Login
           </button>
         </form>
       </div>
@@ -112,4 +112,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;
