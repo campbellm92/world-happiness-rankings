@@ -36,7 +36,7 @@ function Signup() {
 
     try {
       const response = await fetch("", {
-        // needs a value
+        // fetch needs a value
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function Signup() {
 
       if (response.ok) {
         setToken(data.token);
-        navigate(""); // needs a value
+        navigate(""); // navigate needs a value
       } else {
         setError(data.message || "Sign up failed. Please try again.");
       }
