@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 $primary: #4a90e2;
-$secondary: #f9d56e;
+$secondary: #fcf300;
 $accent: #ff9966;
 $background: #f5f7fa;
 $text-color: #333333;
@@ -27,6 +27,20 @@ body {
   background-color: $background;
   color: $text-color;
   font-family: "Rubik", sans-serif;
+}
+
+.brand-custom {
+  font-weight: bold;
+  font-size: 3rem;
+  color: $secondary;
+}
+
+.nav-link-custom {
+  color: $background;
+}
+
+.nav-link-custom:hover {
+  color: $secondary;
 }
 
 // You can add more custom styles here
