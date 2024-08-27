@@ -1,6 +1,5 @@
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Nav, Navbar } from "react-bootstrap/";
 
 function Header() {
   return (
@@ -11,9 +10,8 @@ function Header() {
             Navbar
           </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Link</Nav.Link>
-            <Nav.Link href="#features">Link</Nav.Link>
-            <Nav.Link href="#pricing">Link</Nav.Link>
+            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/register">Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
