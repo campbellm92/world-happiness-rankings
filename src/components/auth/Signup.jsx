@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
-import { useInput } from "../../hooks/useInput";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import useInput from "../../hooks/useInput";
 
 function Signup() {
   const {
@@ -35,7 +36,7 @@ function Signup() {
     }
 
     try {
-      const response = await fetch("", {
+      const response = await fetch("/signup", {
         // fetch needs a value
         method: "POST",
         headers: {
@@ -59,55 +60,46 @@ function Signup() {
   };
 
   return (
-    <div className="">
-      <div className="">
-        <h3 className="">Sign up</h3>
-        <form className="" action="" onSubmit={handleSubmit}>
-          <div className="">
-            <label htmlFor="email">Email:</label>
-            <input
-              className=""
-              type="email"
-              value={email}
-              name="email"
-              id="email"
-              placeholder="email@email.com"
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-              required
-            />
-            {emailHasError && <p className="">Please enter a valid email.</p>}
-          </div>
-          <div className="">
-            <label htmlFor="password">Password:</label>
-            <input
-              className=""
-              type="password"
-              name="password"
-              value={password}
-              id="password"
-              placeholder="••••••••"
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-              required
-            />
-          </div>
-          {passwordHasError && (
-            <p className="">
-              Password must be more than 8 characters long, include an uppercase
-              letter, a number, and a special character.
-            </p>
-          )}
-          {error && <p className="">{error}</p>}
-          <button
-            className=""
-            type="submit"
-            disabled={!emailIsValid || !passwordIsValid}
-          >
-            Create account
-          </button>
-        </form>
-      </div>
+    <div className="container-fluid mt-5">
+      <Form>
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            name="email"
+            placeholder="Enter email"
+            onChange={emailChangeHandler}
+            onBlur={emailBlurHandler}
+            required
+          />
+        </Form.Group>
+        {emailHasError && (
+          <p className="email-error">Please enter a valid email.</p>
+        )}
+
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            name="password"
+            placeholder="••••••••"
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
+            required
+          />
+        </Form.Group>
+        {passwordHasError && (
+          <p className="">
+            Password must be more than 8 characters long, include an uppercase
+            letter, a number, and a special character.
+          </p>
+        )}
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }
