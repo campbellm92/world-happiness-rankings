@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
-import { useInput } from "../../hooks/useInput";
+import useInput from "../../hooks/useInput";
+
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 function Login() {
   const {
@@ -34,17 +36,22 @@ function Login() {
       return;
     }
 
+    const API_URL = `https://d2h6rsg43otiqk.cloudfront.net/prod`;
+    const url = `${API_URL}/user/login`;
+
     try {
-      const response = await fetch("", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-API-KEY": API_KEY,
         },
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
 
       if (response.ok) {
+        console.log(data.token);
         setToken(data.token);
         navigate("");
       } else {
