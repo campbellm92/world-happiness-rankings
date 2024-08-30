@@ -63,6 +63,54 @@ body {
   background-image: url("../images/menu.svg");
 }
 
+.carousel-item-custom {
+  height: 20rem;
+  position: relative;
+  border-radius: 5px;
+}
+
+.carousel-item-custom.one {
+  background-color: var(--secondary);
+}
+
+.carousel-item-custom.two {
+  background-color: var(--accent);
+}
+
+.carousel-item-custom.three {
+  background-color: var(--success);
+}
+
+.carousel-caption-custom {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-button-custom {
+  background: transparent;
+  border-color: var(--text-color);
+}
+
+.carousel-button-custom.one:hover {
+  color: var(--secondary);
+  background: var(--text-color);
+  border: none;
+}
+
+.carousel-button-custom.two:hover {
+  color: var(--accent);
+  background: var(--text-color);
+  border: none;
+}
+
+.carousel-button-custom.three:hover {
+  color: var(--success);
+  background: var(--text-color);
+  border: none;
+}
+
 .form-header-custom {
   font-family: "Bevan", "Nunito", sans-serif;
   font-style: italic;
