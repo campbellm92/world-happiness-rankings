@@ -1,0 +1,53 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+/* Define your custom CSS styles */
+:root {
+  --primary: #759c9e;
+  --secondary: #a2c4c6;
+  --accent: #ff6f61;
+  --background: #fce8c5;
+  --text-color: #333333;
+  --success: #28a745;
+  --warning: #d8b5a5;
+}
+
+/* Override Bootstrap default variables */
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+  font-family: "Nunito", sans-serif;
+}
+
+/* Custom styles */
+.brand-custom {
+  font-weight: bold;
+  font-size: 3rem;
+  color: var(--secondary);
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--text-color);
+}
+
+.logo {
+  height: 6rem;
+}
+
+.nav.nav-link-custom {
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav.nav-link-custom:hover {
+  color: var(--secondary);
+}
+
+.nav-link-custom:visited {
+  color: var(--primary) !important;
+}
+
+.reg-img-custom {
+  border-radius: 10px;
+}
+
+/* Additional custom styles can be added below */
