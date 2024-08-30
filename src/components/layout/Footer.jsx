@@ -1,44 +1,31 @@
-import { Row, Col } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 
 function Footer() {
   return (
-    <footer className="text-bg-light mt-auto p-5">
-      <Row>
-        <Col md={3}>
-          <p>Menu</p>
-          <ul>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-          </ul>
-        </Col>
-        <Col md={3}>
-          <p>Menu</p>
-          <ul>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-          </ul>
-        </Col>
-        <Col md={6}>
-          <p>&copy; 2022, Your site</p>
-          <p className="fw-light">Info</p>
-        </Col>
-      </Row>
-    </footer>
+    <Navbar bg="background" variant="light" className="mt-auto p-2">
+      <p className="footer-text-custom">&copy; 2022, Matthew Campbell</p>
+      <p className="fw-light ps-3 footer-text-custom">
+        W.H.R. single page application completed as part of an assignment for
+        the Queensland University of Technology
+      </p>
+    </Navbar>
   );
 }
 
 export default Footer;
+
+// import { Row, Col } from "react-bootstrap";
+
+// function Footer() {
+//   return (
+//     <footer className="mt-auto p-5">
+//       <Row>
+//         <Col md={12}>
+
+//         </Col>
+//       </Row>
+//     </footer>
+//   );
+// }
+
+// export default Footer;
