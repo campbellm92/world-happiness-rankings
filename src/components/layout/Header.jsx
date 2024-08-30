@@ -10,9 +10,6 @@ function Header() {
         <Container fluid>
           <div className="d-flex justify-content-between flex-wrap">
             <Navbar.Brand as={NavLink} to="/" className="ms-3">
-              {/* <Navbar.Text className="text-wrap brand-custom">
-                World Happiness Rankings
-              </Navbar.Text> */}
               <img className="logo" src={logo} alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,14 +22,14 @@ function Header() {
               <Nav.Link
                 as={NavLink}
                 to="/signup"
-                className="nav mx-2 text-accent nav-link-custom"
+                className="nav mx-2 nav-link-custom"
               >
                 SIGN UP
               </Nav.Link>
               <Nav.Link
                 as={NavLink}
                 to="/login"
-                className="nav mx-2 text-accent nav-link-custom"
+                className="nav mx-2 nav-link-custom"
               >
                 LOGIN
               </Nav.Link>
