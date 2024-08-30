@@ -11,7 +11,7 @@ import Login from "./components/auth/Login";
 function App() {
   return (
     <BrowserRouter>
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column min-vh-100">
         <Header />
         <Container>
           <Routes>
