@@ -73,52 +73,64 @@ function Signup() {
       <main className="flex-grow-1">
         <Row className="align-items-center">
           {" "}
-          <Col md={6}>
-            <img
-              src="https://placehold.co/600x400"
-              alt=""
-              className="reg-img-custom"
-            />
+          <Col md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
+            <span className="border rounded">
+              <img
+                src="../../src/assets/images/happy-boy.jpg"
+                alt="Happy boy"
+                className="img-fluid rounded"
+              />
+            </span>
           </Col>
-          <Col md={6}>
-            <Form onSubmit={handleSubmit}>
+          <Col md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
+            <Form onSubmit={handleSubmit} className="w-100">
               <Form.Group className="mb-3" controlId="formEmail">
-                <Form.Label>Email address</Form.Label>
+                <h3 className="mb-4 form-header-custom">
+                  Register to explore the World Happiness Report further.
+                </h3>
+                <Form.Label className="fs-4">Email</Form.Label>
                 <Form.Control
                   type="email"
                   value={email}
                   name="email"
-                  placeholder="Enter email"
+                  placeholder="Please enter your email address"
                   onChange={emailChangeHandler}
                   onBlur={emailBlurHandler}
                   required
                 />
               </Form.Group>
               {emailHasError && (
-                <p className="email-error">Please enter a valid email.</p>
+                <p className="text-danger">
+                  Please enter a valid email address.
+                </p>
               )}
 
               <Form.Group className="mb-3" controlId="formPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label className="fs-4">Password</Form.Label>
                 <Form.Control
                   type="password"
                   value={password}
                   name="password"
-                  placeholder="••••••••"
+                  placeholder="Please create a password"
                   onChange={passwordChangeHandler}
                   onBlur={passwordBlurHandler}
                   required
                 />
               </Form.Group>
               {passwordHasError && (
-                <p className="">
+                <p className="text-danger">
                   Password must be more than 8 characters long, include an
                   uppercase letter, a number, and a special character.
                 </p>
               )}
-              {error && <p className="">{error}</p>}
-              <Button variant="primary" type="submit">
-                Submit
+              {error && <p className="text-danger">{error}</p>}
+              <Button
+                variant="success"
+                size="lg"
+                type="submit"
+                className="auth-btn-custom"
+              >
+                Register
               </Button>
             </Form>
           </Col>
