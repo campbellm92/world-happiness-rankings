@@ -117,8 +117,10 @@ body {
   color: var(--secondary);
 }
 
-.reg-img-custom {
-  border-radius: 10px;
+.auth-img-custom {
+  /* border-radius: 10px; */
+  /* height: auto; */
+  /* object-fit: cover; */
 }
 
 .auth-btn-custom:hover {
