@@ -57,7 +57,7 @@ function Signup() {
         // setToken(data.token);
         navigate("/"); // possible change to dashboard
       } else if (data.message === "User already exists") {
-        setError("An account with this email already exists.");
+        setError("An account with that email address already exists.");
       } else {
         setError(data.message || "Sign up failed. Please try again.");
       }
