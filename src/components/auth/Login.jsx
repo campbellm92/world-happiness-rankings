@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import useInput from "../../hooks/useInput";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -65,57 +66,72 @@ function Login() {
   };
 
   return (
-    <div className="#">
-      <div className="#">
-        <h3 className="#">Log in</h3>
-        <form className="#" action="#" onSubmit={handleSubmit}>
-          <div className="#">
-            <label htmlFor="email">Email:</label>
-            <input
-              className="#"
-              type="email"
-              value={email}
-              name="email"
-              id="email"
-              placeholder="email@email.com"
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-              required
-            />
-            {emailHasError && (
-              <p className="error-text">Please enter a valid email.</p>
-            )}
-          </div>
-          <div className="#">
-            <label htmlFor="password">Password:</label>
-            <input
-              className="#"
-              type="password"
-              name="password"
-              value={password}
-              id="password"
-              placeholder="••••••••"
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-              required
-            />
-          </div>
-          {passwordHasError && (
-            <p className="error-text">
-              The password you have entered is incorrect. Please try again.
-            </p>
-          )}
-          {error && <p className="">{error}</p>}
-          <button
-            className="#"
-            type="submit"
-            disabled={!emailIsValid || !passwordIsValid}
-          >
-            Login
-          </button>
-        </form>
-      </div>
-    </div>
+    <Container fluid="lg" className="mt-5">
+      <main className="flex-grow-1">
+        <Row className="align-items-center">
+          {" "}
+          <Col md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
+            <span className="border rounded">
+              <img
+                src="../../src/assets/images/happy-people.jpg"
+                alt="Happy people"
+                className="img-fluid rounded auth-img-custom"
+              />
+            </span>
+          </Col>
+          <Col md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
+            <Form onSubmit={handleSubmit} className="w-100">
+              <Form.Group className="mb-3" controlId="formEmail">
+                <h3 className="mb-4 form-header-custom">Log in</h3>
+                <Form.Label className="fs-4">Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  value={email}
+                  name="email"
+                  placeholder="Please enter your email address"
+                  onChange={emailChangeHandler}
+                  onBlur={emailBlurHandler}
+                  required
+                />
+              </Form.Group>
+              {emailHasError && (
+                <p className="text-danger">
+                  There are no accounts linked with that email. Please check for
+                  typos and try again.
+                </p>
+              )}
+
+              <Form.Group className="mb-3" controlId="formPassword">
+                <Form.Label className="fs-4">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={password}
+                  name="password"
+                  placeholder="Please enter your password"
+                  onChange={passwordChangeHandler}
+                  onBlur={passwordBlurHandler}
+                  required
+                />
+              </Form.Group>
+              {passwordHasError && (
+                <p className="text-danger">
+                  The password you have entered is incorrect. Please try again.
+                </p>
+              )}
+              {error && <p className="text-danger">{error}</p>}
+              <Button
+                variant="success"
+                size="lg"
+                type="submit"
+                className="auth-btn-custom"
+              >
+                Log in
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </main>
+    </Container>
   );
 }
 
