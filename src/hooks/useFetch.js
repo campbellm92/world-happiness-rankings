@@ -5,6 +5,7 @@ function useFetch(url) {
   const [data, setData] = useState(null);
   const [fetchPending, setFetchPending] = useState(false);
   const [error, setError] = useState(null);
+  const [headers, setHeaders] = useState({});
 
   useEffect(() => {
     const controller = new AbortController();
@@ -18,7 +19,10 @@ function useFetch(url) {
           setData(data);
           setFetchPending(false);
         } else {
-          const response = await fetch(url, { signal });
+          const response = await fetch(url, {
+            signal,
+            headers: { ...headers },
+          });
           if (!response.ok) throw new Error(response.statusText);
           const data = await response.json();
           cache.current[url] = data;
@@ -37,8 +41,8 @@ function useFetch(url) {
     return () => {
       controller.abort();
     };
-  }, [url]);
-  return { data, fetchPending, error };
+  }, [url, headers]);
+  return { data, fetchPending, error, setHeaders };
 }
 
 export default useFetch;
