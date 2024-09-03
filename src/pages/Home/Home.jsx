@@ -5,9 +5,13 @@ import Rankings from "./Rankings";
 function Home() {
   return (
     <main className="flex-grow-1">
-      <HeroImage />
-      <HeroCarousel />
-      <Rankings />
+      <section>
+        <HeroImage />
+        <HeroCarousel />
+      </section>
+      <section className="mt-5 first-rankings-section">
+        <Rankings />
+      </section>
     </main>
   );
 }
