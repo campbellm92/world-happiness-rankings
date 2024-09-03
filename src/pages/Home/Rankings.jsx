@@ -1,44 +1,71 @@
-import { useEffect } from "react";
-import { FunnelChart, Tooltip, Funnel, LabelList } from "recharts";
-import useFetch from "../../hooks/useFetch";
-
-const API_KEY = import.meta.env.VITE_API_KEY;
+import { useState } from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap/";
+import RankingsAreaChart from "../../components/charts/AreaChart";
 
 function Rankings() {
-  const { data, fetchPending, error, setHeaders } = useFetch(
-    "https://d2h6rsg43otiqk.cloudfront.net/prod/rankings"
-  );
+  const [country, setCountry] = useState("");
+  const [year, setYear] = useState("");
+  const [query, setQuery] = useState({ country: "", year: "" });
 
-  useEffect(() => {
-    setHeaders({
-      "Content-Type": "application/json",
-      "X-API-KEY": API_KEY,
-    });
-  }, [setHeaders]);
-
-  if (fetchPending) {
-    console.log("loading");
-  }
-
-  if (error) {
-    console.log(error);
-  }
-
-  console.log(data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setQuery({ country, year });
+  };
 
   return (
     <div>
-      <FunnelChart width={730} height={250}>
-        <Tooltip />
-        <Funnel dataKey="value" data={data} isAnimationActive>
-          <LabelList
-            position="right"
-            fill="#000"
-            stroke="none"
-            dataKey="name"
-          />
-        </Funnel>
-      </FunnelChart>
+      <Container fluid>
+        <Row>
+          <Col xs={6}>
+            <Row>
+              <Col xs={12}>
+                <div className="p-5 rankings-section-one-intro">
+                  <h1 className="rankings-section-one-header">
+                    Finland leads again.
+                  </h1>
+                  <p className="fs-2 rankings-section-one-text">
+                    In 2020, Finland was the happiest country in the world for
+                    the third year running. Find out here how your country has
+                    done over the years.
+                  </p>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                {" "}
+                <Form className="px-5" onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3" controlId="formYear">
+                    <Form.Label className="fs-4">Year</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Enter a year between 2015 and 2020"
+                      value={year}
+                      onChange={(e) => setYear(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formCountry">
+                    <Form.Label className="fs-4">Country</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter a country"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Button variant="success" size="lg" type="submit">
+                    Explore
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Col>
+
+          <Col xs={6}>
+            <RankingsAreaChart query={query} />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
