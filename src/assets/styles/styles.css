@@ -1,8 +1,8 @@
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-/* Define your custom CSS styles */
 :root {
   --primary: #759c9e;
   --secondary: #a2c4c6;
@@ -16,6 +16,7 @@
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 #root {
@@ -28,10 +29,11 @@ body {
 body {
   background-color: var(--background);
   color: var(--text-color);
-  font-family: "Nunito", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
-/* Custom styles */
+/* NAVBAR */
+
 .brand-custom {
   font-weight: bold;
   font-size: 3rem;
@@ -63,10 +65,35 @@ body {
   background-image: url("../images/menu.svg");
 }
 
+/* HERO */
+
+.hero-custom {
+  background-image: url("../images/happy-people-jumping.jpg");
+  height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-header {
+  font-family: "Bevan", sans-serif;
+  color: var(--primary);
+}
+
+.hero-sub-header {
+  color: var(--text-color);
+  font-style: italic;
+}
+
+.hero-mask {
+  background-color: rgba(252, 232, 197, 0.9);
+}
+
 .carousel-item-custom {
   height: 20rem;
   position: relative;
   border-radius: 5px;
+  background-size: cover;
+  background-position: center;
 }
 
 .carousel-item-custom.one {
@@ -111,16 +138,22 @@ body {
   border: none;
 }
 
-.form-header-custom {
-  font-family: "Bevan", "Nunito", sans-serif;
-  font-style: italic;
-  color: var(--secondary);
+/* RANKINGS */
+
+.first-rankings-section {
+  background-color: var(--secondary);
 }
 
-.auth-img-custom {
-  /* border-radius: 10px; */
-  /* height: auto; */
-  /* object-fit: cover; */
+.rankings-section-one-header {
+  font-family: "Bevan", sans-serif;
+}
+
+/* AUTH */
+
+.form-header-custom {
+  font-style: italic;
+  font-weight: 900;
+  color: var(--primary);
 }
 
 .auth-btn-custom:hover {
