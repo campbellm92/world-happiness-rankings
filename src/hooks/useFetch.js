@@ -2,12 +2,13 @@ import { useState, useEffect, useRef } from "react";
 
 function useFetch(url) {
   const cache = useRef({});
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [fetchPending, setFetchPending] = useState(false);
   const [error, setError] = useState(null);
   const [headers, setHeaders] = useState({});
 
   useEffect(() => {
+    if (!url) return;
     const controller = new AbortController();
     const { signal } = controller;
 
