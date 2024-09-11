@@ -85,7 +85,7 @@ body {
 }
 
 .hero-mask {
-  background-color: rgba(252, 232, 197, 0.9);
+  background-color: rgba(252, 232, 197, 0.95);
 }
 
 .carousel-item-custom {
@@ -138,13 +138,21 @@ body {
   border: none;
 }
 
-/* RANKINGS */
-
+/* RANKINGS SECTION ONE */
 .first-rankings-section {
   background-color: var(--secondary);
 }
 
 .rankings-section-one-header {
+  font-family: "Bevan", sans-serif;
+}
+
+/* RANKINGS - TRENDS */
+.second-rankings-section {
+  background-color: var(--accent);
+}
+
+.trends-intro-header {
   font-family: "Bevan", sans-serif;
 }
 
@@ -165,5 +173,3 @@ body {
 .footer-text-custom {
   font-size: 0.8rem;
 }
-
-/* Additional custom styles can be added below */
