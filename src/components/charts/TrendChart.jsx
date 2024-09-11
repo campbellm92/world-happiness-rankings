@@ -13,7 +13,7 @@ import {
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-function RankingsAreaChart({ query }) {
+function TrendChart({ query }) {
   const { data, fetchPending, error, setHeaders } = useFetch(
     query.year && query.country
       ? `https://d2h6rsg43otiqk.cloudfront.net/prod/rankings?year=${query.year}&country=${query.country}`
@@ -78,4 +78,4 @@ function RankingsAreaChart({ query }) {
   );
 }
 
-export default RankingsAreaChart;
+export default TrendChart;
