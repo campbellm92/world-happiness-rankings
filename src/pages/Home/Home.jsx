@@ -1,6 +1,7 @@
 import HeroImage from "./Hero";
 import HeroCarousel from "./Carousel";
 import Rankings from "./Rankings";
+import Trends from "./Trends";
 
 function Home() {
   return (
@@ -11,6 +12,9 @@ function Home() {
       </section>
       <section className="mt-5 first-rankings-section">
         <Rankings />
+      </section>
+      <section className="second-rankings-section">
+        <Trends />
       </section>
     </main>
   );
