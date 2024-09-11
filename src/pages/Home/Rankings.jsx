@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
-import RankingsAreaChart from "../../components/charts/AreaChart";
+import Table from "../../components/charts/Table";
 
 function Rankings() {
-  const [country, setCountry] = useState("");
-  const [year, setYear] = useState("");
-  const [query, setQuery] = useState({ country: "", year: "" });
+  const [country, setCountry] = useState("Finland");
+  const [year, setYear] = useState("2020");
+  const [query, setQuery] = useState({ country: "Finland", year: "2020" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,12 +21,12 @@ function Rankings() {
               <Col xs={12}>
                 <div className="p-5 rankings-section-one-intro">
                   <h1 className="rankings-section-one-header">
-                    Finland leads again.
+                    Finland leads again
                   </h1>
-                  <p className="fs-2 rankings-section-one-text">
+                  <p className="fs-2">
                     In 2020, Finland was the happiest country in the world for
                     the third year running. Find out here how your country has
-                    done over the years.
+                    done in comparison with others over the years.
                   </p>
                 </div>
               </Col>
@@ -34,13 +34,15 @@ function Rankings() {
             <Row>
               <Col xs={12}>
                 {" "}
-                <Form className="px-5" onSubmit={handleSubmit}>
+                <Form className="pb-5 ps-5 pe-5" onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="formYear">
                     <Form.Label className="fs-4">Year</Form.Label>
                     <Form.Control
                       type="number"
                       placeholder="Enter a year between 2015 and 2020"
                       value={year}
+                      min="2015"
+                      max="2020"
                       onChange={(e) => setYear(e.target.value)}
                     />
                   </Form.Group>
@@ -61,8 +63,9 @@ function Rankings() {
             </Row>
           </Col>
 
-          <Col xs={6}>
-            <RankingsAreaChart query={query} />
+          <Col xs={6} className="p-3">
+            {" "}
+            <Table query={query} />
           </Col>
         </Row>
       </Container>
