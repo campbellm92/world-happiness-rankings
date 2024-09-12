@@ -2,6 +2,7 @@ import HeroImage from "./Hero";
 import HeroCarousel from "./Carousel";
 import Rankings from "./Rankings";
 import Trends from "./Trends";
+import Factors from "./Factors";
 
 function Home() {
   return (
@@ -15,6 +16,9 @@ function Home() {
       </section>
       <section className="second-rankings-section">
         <Trends />
+      </section>
+      <section className="factors-section">
+        <Factors />
       </section>
     </main>
   );
