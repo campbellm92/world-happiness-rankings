@@ -3,14 +3,12 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap/";
 import TrendChart from "../../components/charts/TrendChart";
 
 function Trends() {
-  const [country1, setCountry1] = useState("");
-  const [country2, setCountry2] = useState("");
-  const [country3, setCountry3] = useState("");
-  const [query, setQuery] = useState({});
+  const [country, setCountry] = useState("Finland");
+  const [query, setQuery] = useState({ country: "Finland" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setQuery({ country1, country2, country3 });
+    setQuery({ country });
   };
 
   return (
@@ -19,9 +17,7 @@ function Trends() {
         <Col xs={12}>
           <div className="m-5 trends-intro text-center">
             <h1 className="trends-intro-header">Trends</h1>
-            <p className="fs-2">
-              Explore happiness trends with up to 3 different countries.
-            </p>
+            <p className="fs-2">Explore happiness trends in your country.</p>
           </div>
         </Col>
       </Row>
@@ -32,29 +28,9 @@ function Trends() {
             <Form.Group controlId="formCountry1">
               <Form.Control
                 type="text"
-                placeholder="Enter country 1"
-                value={country1}
-                onChange={(e) => setCountry1(e.target.value)}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={2}>
-            <Form.Group controlId="formCountry2">
-              <Form.Control
-                type="text"
-                placeholder="Enter country 2 (optional)"
-                value={country2}
-                onChange={(e) => setCountry2(e.target.value)}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={2}>
-            <Form.Group controlId="formCountry3">
-              <Form.Control
-                type="text"
-                placeholder="Enter country 3 (optional)"
-                value={country3}
-                onChange={(e) => setCountry3(e.target.value)}
+                placeholder="Enter a country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
               />
             </Form.Group>
           </Col>
