@@ -88,6 +88,8 @@ body {
   background-color: rgba(252, 232, 197, 0.95);
 }
 
+/* CAROUSEL */
+
 .carousel-item-custom {
   height: 20rem;
   position: relative;
@@ -113,11 +115,20 @@ body {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: var(--text-color);
+}
+
+.carousel-header-custom {
+  font-family: "Bevan", sans-serif;
+  color: var(--text-color);
 }
 
 .carousel-button-custom {
   background: transparent;
   border-color: var(--text-color);
+  border-width: 1.5px;
+  color: var(--text-color);
+  font-weight: bolder;
 }
 
 .carousel-button-custom.one:hover {
@@ -143,17 +154,27 @@ body {
   background-color: var(--secondary);
 }
 
-.rankings-section-one-header {
+.data-intro-header {
   font-family: "Bevan", sans-serif;
 }
 
 /* RANKINGS - TRENDS */
 .second-rankings-section {
-  background-color: var(--accent);
+  background-color: var(--background);
 }
 
 .trends-intro-header {
   font-family: "Bevan", sans-serif;
+}
+
+/* FACTORS */
+
+.factors-section {
+  background-color: var(--secondary);
+}
+
+.factors-auth-card {
+  background-color: inherit;
 }
 
 /* AUTH */
