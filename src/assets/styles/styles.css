@@ -175,6 +175,30 @@ body {
 
 .factors-auth-card {
   background-color: inherit;
+  width: 450px;
+  height: auto;
+}
+
+.factors-signup-btn {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  font-weight: bold;
+}
+
+.factors-signup-btn:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.factors-login-btn {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  font-weight: bold;
+}
+
+.factors-login-btn:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 /* AUTH */
