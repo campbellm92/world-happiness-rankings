@@ -19,10 +19,8 @@ function Rankings() {
           <Col xs={6}>
             <Row>
               <Col xs={12}>
-                <div className="p-5 rankings-section-one-intro">
-                  <h1 className="rankings-section-one-header">
-                    Finland leads again
-                  </h1>
+                <div className="pt-5 ps-5 pe-5 rankings-section-one-intro">
+                  <h1 className="data-intro-header">Finland leads again</h1>
                   <p className="fs-2">
                     In 2020, Finland was the happiest country in the world for
                     the third year running. Find out here how your country has
