@@ -14,11 +14,15 @@ function Factors() {
               <h3 className="text-center">Chart Placeholder</h3>
             </div>
           ) : (
-            <div className="">
+            <div
+              className="d-flex justify-content-center align-items-center"
+              style={{ minHeight: "100vh" }}
+            >
               <Card className="factors-auth-card">
                 <Card.Img
                   variant="top"
                   src="../../src/assets/images/happy-girl.jpg"
+                  className="factors-auth-img"
                 />
                 <Card.Body>
                   <Card.Title className="data-intro-header">
@@ -29,12 +33,10 @@ function Factors() {
                     select sign up below, or log in if you have an account
                     already.
                   </Card.Text>
-                  <Button variant="primary" className="m-2">
-                    Sign up
-                  </Button>
-                  <Button variant="primary" className="m-2">
-                    Log in
-                  </Button>
+                  <div className="factors-auth-btns">
+                    <Button className="me-2 factors-signup-btn">Sign up</Button>
+                    <Button className="me-2 factors-login-btn">Log in</Button>
+                  </div>
                 </Card.Body>
               </Card>
             </div>
