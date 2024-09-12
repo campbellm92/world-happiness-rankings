@@ -25,7 +25,6 @@ function Table({ query }) {
   } = useFetch(apiURL);
 
   useEffect(() => {
-    console.log("Row data:", rowData);
     if (apiURL) {
       setHeaders({
         "Content-Type": "application/json",
