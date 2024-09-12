@@ -34,7 +34,14 @@ function Table({ query }) {
   }, [setHeaders, apiURL]);
 
   if (fetchPending) {
-    return <Spinner animation="grow" variant="success" />;
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "100vh" }}
+      >
+        <Spinner animation="grow" variant="success" />
+      </div>
+    );
   }
 
   if (error) {
