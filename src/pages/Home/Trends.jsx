@@ -1,10 +1,20 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
+import TrendChart from "../../components/charts/TrendChart";
 
 function Trends() {
+  const [country1, setCountry1] = useState("");
+  const [country2, setCountry2] = useState("");
+  const [country3, setCountry3] = useState("");
+  const [query, setQuery] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setQuery({ country1, country2, country3 });
+  };
+
   return (
     <Container fluid>
-      {/* Top row for introductory text */}
       <Row>
         <Col xs={12}>
           <div className="m-5 trends-intro text-center">
@@ -16,43 +26,53 @@ function Trends() {
         </Col>
       </Row>
 
-      {/* Row with 5 country inputs */}
-      <Row className="justify-content-center">
-        <Col xs={2}>
-          <Form.Group controlId="formCountry1">
-            <Form.Control type="text" placeholder="Enter country 1" />
-          </Form.Group>
-        </Col>
-        <Col xs={2}>
-          <Form.Group controlId="formCountry2">
-            <Form.Control
-              type="text"
-              placeholder="Enter country 2 (optional)"
-            />
-          </Form.Group>
-        </Col>
-        <Col xs={2}>
-          <Form.Group controlId="formCountry3">
-            <Form.Control
-              type="text"
-              placeholder="Enter country 3 (optional)"
-            />
-          </Form.Group>
-        </Col>
-      </Row>
+      <Form onSubmit={handleSubmit}>
+        <Row className="justify-content-center">
+          <Col xs={2}>
+            <Form.Group controlId="formCountry1">
+              <Form.Control
+                type="text"
+                placeholder="Enter country 1"
+                value={country1}
+                onChange={(e) => setCountry1(e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={2}>
+            <Form.Group controlId="formCountry2">
+              <Form.Control
+                type="text"
+                placeholder="Enter country 2 (optional)"
+                value={country2}
+                onChange={(e) => setCountry2(e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={2}>
+            <Form.Group controlId="formCountry3">
+              <Form.Control
+                type="text"
+                placeholder="Enter country 3 (optional)"
+                value={country3}
+                onChange={(e) => setCountry3(e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-      {/* Button to submit the form */}
-      <Row className="mt-4 text-center">
-        <Col xs={12}>
-          <Button type="submit" variant="secondary" size="lg">
-            Submit
-          </Button>
-        </Col>
-      </Row>
+        <Row className="mt-4 text-center">
+          <Col xs={12}>
+            <Button type="submit" variant="success" size="lg">
+              Explore
+            </Button>
+          </Col>
+        </Row>
+      </Form>
 
-      {/* Bottom row for the AreaChart */}
       <Row>
-        <Col xs={12}>{/* <AreaChart query={{}} />  */}</Col>
+        <Col xs={12} style={{ height: "400px", marginTop: "20px" }}>
+          <TrendChart query={query} />{" "}
+        </Col>
       </Row>
     </Container>
   );
