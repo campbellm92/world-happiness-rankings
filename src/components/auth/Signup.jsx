@@ -69,11 +69,15 @@ function Signup() {
   };
 
   return (
-    <Container fluid="lg" className="mt-5">
-      <main className="flex-grow-1">
+    <Container
+      fluid="lg"
+      className="mt-5 d-flex justify-content-center align-items-center"
+      style={{ minHeight: "75vh" }}
+    >
+      <main className="w-100">
         <Row className="align-items-center">
           {" "}
-          <Col md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
+          <Col xs={12} md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
             <span className="border rounded">
               <img
                 src="../../src/assets/images/happy-boy.jpg"
@@ -82,11 +86,11 @@ function Signup() {
               />
             </span>
           </Col>
-          <Col md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
+          <Col xs={12} md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
             <Form onSubmit={handleSubmit} className="w-100">
               <Form.Group className="mb-3" controlId="formEmail">
                 <h3 className="mb-4 form-header-custom">
-                  Register to explore the World Happiness Report further.
+                  Register to explore the World Happiness Report further
                 </h3>
                 <Form.Label className="fs-4">Email</Form.Label>
                 <Form.Control
