@@ -11,10 +11,9 @@ import {
 } from "recharts";
 import Spinner from "react-bootstrap/Spinner";
 
-// const API_KEY = import.meta.env.VITE_API_KEY;
+function FactorsRadar({ query, token }) {
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
-function FactorsRadar({ query }) {
-  console.log(query);
   const { data, fetchPending, error } = useFetch(
     query.country && query.year
       ? `https://d2h6rsg43otiqk.cloudfront.net/prod/factors/${query.year}?country=${query.country}`
@@ -22,19 +21,14 @@ function FactorsRadar({ query }) {
     true
   );
 
-  console.log(
-    `API URL: https://d2h6rsg43otiqk.cloudfront.net/prod/factors/${query.year}?country=${query.country}`
-  ); // Debug: Check URL
-  console.log(data);
+  useEffect(() => {
+    console.log("API Key:", API_KEY);
+    console.log("Authorization Token:", token);
+  }, [API_KEY, token]);
 
   useEffect(() => {
-    if (query.country && query.year) {
-      //   setHeaders({
-      //     "Content-Type": "application/json",
-      //     // "X-API-KEY": API_KEY,
-      //   });
-    }
-  }, [query.country, query.year]);
+    console.log("Fetched data:", data);
+  }, [data]);
 
   if (fetchPending) {
     return (
@@ -69,11 +63,11 @@ function FactorsRadar({ query }) {
   console.log("Radar chart data:", data);
 
   return (
-    <ResponsiveContainer>
-      <RadarChart outerRadius={90} width={730} height={250} data={radarData}>
+    <ResponsiveContainer width="100%" height={400}>
+      <RadarChart outerRadius={90} data={radarData}>
         <PolarGrid />
         <PolarAngleAxis dataKey="factor" />
-        <PolarRadiusAxis angle={30} domain={[0, 150]} />
+        <PolarRadiusAxis angle={30} domain={[0, 3]} />
         <Radar
           name={query.country}
           dataKey="value"
