@@ -1,31 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { useAuth } from "../../context/authProvider";
 import FactorsRadar from "../../components/charts/Radar";
 
 function Factors() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
-  const [country, setCountry] = useState("Finland");
-  const [year, setYear] = useState("2020");
-  const [query, setQuery] = useState({ country: "Finland", year: "2020" });
+  const { token } = useAuth();
+  console.log("Token from useAuth:", token);
+  const [country, setCountry] = useState("");
+  const [year, setYear] = useState("");
+  const [query, setQuery] = useState(null);
+  const [error, setError] = useState(""); // Add an error state
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (country && year) {
       setQuery({ country, year });
+      setError("");
       console.log({ country, year });
     } else {
       return <p>You must provide a country and a year</p>;
     }
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
 
   const handleSignupClick = () => {
     navigate("/signup");
@@ -39,9 +36,9 @@ function Factors() {
     <Container fluid className="p-5">
       <Row>
         <Col xs={12} md={6}>
-          {isAuthenticated && query.country && query.year ? (
+          {token && query ? (
             <div>
-              <FactorsRadar query={query} />
+              <FactorsRadar query={query} token={token} />
             </div>
           ) : (
             <div
@@ -95,6 +92,7 @@ function Factors() {
 
           <div className="mt-4">
             <Form onSubmit={handleSubmit}>
+              {error && <p className="text-danger">{error}</p>}
               <Form.Group controlId="formCountry">
                 <Form.Label>Country</Form.Label>
                 <Form.Control
