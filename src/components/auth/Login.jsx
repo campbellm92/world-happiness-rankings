@@ -54,7 +54,7 @@ function Login() {
       if (response.ok) {
         console.log(data.token);
         setToken(data.token);
-        navigate("");
+        navigate("/");
       } else {
         setError(data.message || "Login failed. Please try again.");
       }
