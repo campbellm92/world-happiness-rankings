@@ -204,7 +204,6 @@ body {
 /* AUTH */
 
 .form-header-custom {
-  font-style: italic;
   font-weight: 900;
   color: var(--primary);
 }
