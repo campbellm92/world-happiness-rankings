@@ -1,9 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import fetchWithAuth from "../../utils/fetchWithAuth";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 
 function Factors() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  });
+
+  const handleSignupClick = () => {
+    navigate("/signup");
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
 
   return (
     <Container fluid className="p-5">
@@ -34,8 +51,18 @@ function Factors() {
                     already.
                   </Card.Text>
                   <div className="factors-auth-btns">
-                    <Button className="me-2 factors-signup-btn">Sign up</Button>
-                    <Button className="me-2 factors-login-btn">Log in</Button>
+                    <Button
+                      className="me-2 factors-signup-btn"
+                      onClick={handleSignupClick}
+                    >
+                      Sign up
+                    </Button>
+                    <Button
+                      className="me-2 factors-login-btn"
+                      onClick={handleLoginClick}
+                    >
+                      Log in
+                    </Button>
                   </div>
                 </Card.Body>
               </Card>
