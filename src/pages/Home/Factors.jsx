@@ -1,18 +1,31 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import fetchWithAuth from "../../utils/fetchWithAuth";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import FactorsRadar from "../../components/charts/Radar";
 
 function Factors() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const [country, setCountry] = useState("Finland");
+  const [year, setYear] = useState("2020");
+  const [query, setQuery] = useState({ country: "Finland", year: "2020" });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (country && year) {
+      setQuery({ country, year });
+      console.log({ country, year });
+    } else {
+      return <p>You must provide a country and a year</p>;
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
     }
-  });
+  }, []);
 
   const handleSignupClick = () => {
     navigate("/signup");
@@ -26,9 +39,9 @@ function Factors() {
     <Container fluid className="p-5">
       <Row>
         <Col xs={12} md={6}>
-          {isAuthenticated ? (
+          {isAuthenticated && query.country && query.year ? (
             <div>
-              <h3 className="text-center">Chart Placeholder</h3>
+              <FactorsRadar query={query} />
             </div>
           ) : (
             <div
@@ -70,9 +83,7 @@ function Factors() {
           )}
         </Col>
 
-        {/* Right: Introductory Text and Form (50% width) */}
         <Col xs={12} md={6}>
-          {/* Introductory Text */}
           <div className="p-3">
             <h1 className="data-intro-header">Factors</h1>
             <p className="fs-2">
@@ -82,17 +93,26 @@ function Factors() {
             </p>
           </div>
 
-          {/* Form Section */}
           <div className="mt-4">
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formCountry">
-                <Form.Label>Select a Country</Form.Label>
-                <Form.Control as="select"></Form.Control>
+                <Form.Label>Country</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter a country"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                ></Form.Control>
               </Form.Group>
 
               <Form.Group controlId="formYear" className="mt-3">
-                <Form.Label>Select a Year</Form.Label>
-                <Form.Control as="select"></Form.Control>
+                <Form.Label>Year</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="2020"
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                ></Form.Control>
               </Form.Group>
 
               <Button variant="primary" type="submit" className="mt-4">
