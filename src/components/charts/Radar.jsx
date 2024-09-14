@@ -11,9 +11,7 @@ import {
 } from "recharts";
 import Spinner from "react-bootstrap/Spinner";
 
-function FactorsRadar({ query, token }) {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-
+function FactorsRadar({ query }) {
   const { data, fetchPending, error } = useFetch(
     query.country && query.year
       ? `https://d2h6rsg43otiqk.cloudfront.net/prod/factors/${query.year}?country=${query.country}`
@@ -21,14 +19,17 @@ function FactorsRadar({ query, token }) {
     true
   );
 
-  useEffect(() => {
-    console.log("API Key:", API_KEY);
-    console.log("Authorization Token:", token);
-  }, [API_KEY, token]);
+  // useEffect(() => {
+  //   if (query.country && query.year) {
+  //     setHeaders({
+  //       "Content-Type": "application/json",
+  //     });
+  //   }
+  // }, [setHeaders, query.country, query.year]);
 
   useEffect(() => {
-    console.log("Fetched data:", data);
-  }, [data]);
+    console.log("Query:", query); // Optional logging for debugging
+  }, [query]);
 
   if (fetchPending) {
     return (
@@ -42,7 +43,7 @@ function FactorsRadar({ query, token }) {
     return <div>Error: {error.message || "Something went wrong!"}</div>;
   }
 
-  if (!data || data.length === 0) {
+  if (!data || data.length === 0 || !data[0]) {
     return (
       <p className="mt-4 text-danger text-center">
         Sorry, we couldn't find any data for this country 😔. Please try a
@@ -52,15 +53,13 @@ function FactorsRadar({ query, token }) {
   }
 
   const radarData = [
-    { factor: "Economy", value: parseFloat(data[0].economy) },
-    { factor: "Family", value: parseFloat(data[0].family) },
-    { factor: "Health", value: parseFloat(data[0].health) },
-    { factor: "Freedom", value: parseFloat(data[0].freedom) },
-    { factor: "Generosity", value: parseFloat(data[0].generosity) },
-    { factor: "Trust", value: parseFloat(data[0].trust) },
+    { factor: "Economy", value: parseFloat(data[0]?.economy) },
+    { factor: "Family", value: parseFloat(data[0]?.family) },
+    { factor: "Health", value: parseFloat(data[0]?.health) },
+    { factor: "Freedom", value: parseFloat(data[0]?.freedom) },
+    { factor: "Generosity", value: parseFloat(data[0]?.generosity) },
+    { factor: "Trust", value: parseFloat(data[0]?.trust) },
   ];
-
-  console.log("Radar chart data:", data);
 
   return (
     <ResponsiveContainer width="100%" height={400}>
