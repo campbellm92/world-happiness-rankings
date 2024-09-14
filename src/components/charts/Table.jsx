@@ -45,7 +45,11 @@ function Table({ query }) {
   }
 
   if (error) {
-    return <div>Error: {error.message || "Something went wrong!"}</div>;
+    return (
+      <div className="error-text">
+        Error: {error.message || "Something went wrong!"}
+      </div>
+    );
   }
 
   const colDefs = [
