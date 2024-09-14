@@ -8,7 +8,7 @@ import Factors from "./Factors";
 function Home() {
   return (
     <main className="flex-grow-1">
-      <section>
+      <section className="hero-section">
         <HeroImage />
         <HeroCarousel />
       </section>
