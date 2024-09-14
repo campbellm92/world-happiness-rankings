@@ -3,24 +3,29 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { useAuth } from "../../context/authProvider";
 import FactorsRadar from "../../components/charts/Radar";
+// import FactorsBarChart from "../../components/charts/Bar";
 
 function Factors() {
   const navigate = useNavigate();
   const { token } = useAuth();
-  console.log("Token from useAuth:", token);
+  // console.log("Token from useAuth:", token);
   const [country, setCountry] = useState("");
   const [year, setYear] = useState("");
   const [query, setQuery] = useState(null);
-  const [error, setError] = useState(""); // Add an error state
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Country:", country); // Log country state
+    console.log("Year:", year); // Log year state
+
     if (country && year) {
       setQuery({ country, year });
       setError("");
-      console.log({ country, year });
+      console.log("Query submitted: ", { country, year }); // Log the query being set
     } else {
-      return <p>You must provide a country and a year</p>;
+      setError("You must provide a country and a year");
+      console.log("Missing country or year.");
     }
   };
 
@@ -31,6 +36,9 @@ function Factors() {
   const handleLoginClick = () => {
     navigate("/login");
   };
+
+  console.log("Token:", token);
+  console.log("Query:", query);
 
   return (
     <Container fluid className="p-5">
@@ -56,9 +64,9 @@ function Factors() {
                     Please sign in
                   </Card.Title>
                   <Card.Text>
-                    You'll need to have an account to explore this data. Please
-                    select sign up below, or log in if you have an account
-                    already.
+                    You will need to have an account to explore this data.
+                    Please select sign up below, or log in if you have an
+                    account already.
                   </Card.Text>
                   <div className="factors-auth-btns">
                     <Button
@@ -99,7 +107,10 @@ function Factors() {
                   type="text"
                   placeholder="Enter a country"
                   value={country}
-                  onChange={(e) => setCountry(e.target.value)}
+                  onChange={(e) => {
+                    setCountry(e.target.value);
+                    console.log("Country input value:", e.target.value);
+                  }}
                 ></Form.Control>
               </Form.Group>
 
@@ -107,10 +118,15 @@ function Factors() {
                 <Form.Label>Year</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="2020"
+                  placeholder="Enter a year between 2015 and 2020"
                   value={year}
-                  onChange={(e) => setYear(e.target.value)}
-                ></Form.Control>
+                  min="2015"
+                  max="2020"
+                  onChange={(e) => {
+                    setYear(e.target.value);
+                    console.log("Year:", e.target.value);
+                  }}
+                />
               </Form.Group>
 
               <Button variant="primary" type="submit" className="mt-4">
