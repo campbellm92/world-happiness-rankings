@@ -1,8 +1,10 @@
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 async function fetchWithAuth(url, options = {}) {
   const token = localStorage.getItem("token");
-
   const headers = {
     "Content-Type": "application/json",
+    "X-API-KEY": API_KEY,
     ...options.headers,
   };
 
@@ -10,16 +12,29 @@ async function fetchWithAuth(url, options = {}) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  const response = await fetch(url, {
-    ...options,
-    headers,
-  });
+  console.log("Headers being sent:", headers);
 
-  if (!response.ok) {
-    throw new Error("Network didn't respond.");
+  // const controller = new AbortController();
+  // const { signal } = controller;
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      headers,
+      // signal,
+    });
+
+    if (!response.ok) {
+      throw new Error("Network didn't respond.");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      console.error(`Fetch error: ${error}`);
+    }
+    throw error;
   }
-
-  return response.json();
 }
-
 export default fetchWithAuth;
