@@ -10,7 +10,7 @@
   --background: #fce8c5;
   --text-color: #333333;
   --success: #28a745;
-  --warning: #d8b5a5;
+  --warning: #e74c3c;
 }
 
 html,
@@ -30,6 +30,10 @@ body {
   background-color: var(--background);
   color: var(--text-color);
   font-family: "Quicksand", sans-serif;
+}
+
+.error-text {
+  color: var(--warning);
 }
 
 /* NAVBAR */
@@ -149,29 +153,36 @@ body {
   border: none;
 }
 
-/* RANKINGS SECTION ONE */
+/* SECTIONS */
+
+.hero-section {
+  height: 100vh;
+}
+
 .first-rankings-section {
   background-color: var(--secondary);
+  height: 100vh;
+}
+
+.second-rankings-section {
+  background-color: var(--background);
+  height: 100vh;
+}
+
+.factors-main-section {
+  background-color: var(--secondary);
+  height: 100vh;
+}
+
+.factors-section {
+  background-color: var(--background);
 }
 
 .data-intro-header {
   font-family: "Bevan", sans-serif;
 }
 
-/* RANKINGS - TRENDS */
-.second-rankings-section {
-  background-color: var(--background);
-}
-
-.trends-intro-header {
-  font-family: "Bevan", sans-serif;
-}
-
-/* FACTORS */
-
-.factors-section {
-  background-color: var(--secondary);
-}
+/* FACTORS - AUTH CARD (RADAR SECTION) */
 
 .factors-auth-card {
   background-color: inherit;
@@ -213,6 +224,8 @@ body {
   background-color: transparent;
   border-color: var(--success);
 }
+
+/* FOOTER */
 
 .footer-text-custom {
   font-size: 0.8rem;
