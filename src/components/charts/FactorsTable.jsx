@@ -1,13 +1,21 @@
 import useFetch from "../../hooks/useFetch";
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import Spinner from "react-bootstrap/Spinner";
-import "../../assets/styles/ag-grid-theme-builder.css";
+import "../../assets/styles/ag-grid-theme-builder-factors-table.css";
+
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 function FactorsTable({ query }) {
   let apiURL = `https://d2h6rsg43otiqk.cloudfront.net/prod/factors/${query.year}`;
 
   const params = new URLSearchParams();
+
+  if (!query.year) {
+    return (
+      <p className="mt-4 fs-4 text-center error-text">You must enter a year</p>
+    );
+  }
 
   if (query.limit) {
     params.append("limit", query.limit);
@@ -19,7 +27,24 @@ function FactorsTable({ query }) {
     apiURL += `?${params.toString()}`;
   }
 
-  const { data: rowData = [], fetchPending, error } = useFetch(apiURL);
+  const {
+    data: rowData = [],
+    fetchPending,
+    error,
+    setHeaders,
+  } = useFetch(apiURL);
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (apiURL) {
+      setHeaders({
+        "Content-Type": "application/json",
+        "X-API-KEY": API_KEY,
+        Authorization: `Bearer ${token}`,
+      });
+    }
+  }, [setHeaders, apiURL, token]);
 
   if (fetchPending) {
     return (
@@ -33,19 +58,31 @@ function FactorsTable({ query }) {
   }
 
   if (error) {
-    return <div>Error: {error.message || "Something went wrong!"}</div>;
+    return (
+      <div className="error-text">
+        Error: {error.message || "Something went wrong!"}
+      </div>
+    );
   }
 
   const colDefs = [
-    { field: "rank", headerName: "👆 Rank" },
-    { field: "country", headerName: "🌎 Country" },
-    { field: "score", headerName: "📈 Score" },
-    { field: "economy", headerName: "Economy" },
-    { field: "family", headerName: "Family" },
-    { field: "health", headerName: "Health" },
-    { field: "freedom", headerName: "Freedom" },
-    { field: "generosity", headerName: "Generosity" },
-    { field: "trust", headerName: "Trust" },
+    {
+      field: "rank",
+      headerName: "👆 Rank",
+      flex: 1,
+    },
+    {
+      field: "country",
+      headerName: "🌎 Country",
+      flex: 1,
+    },
+    { field: "score", headerName: "📈 Score", flex: 1 },
+    { field: "economy", headerName: "Economy", flex: 1 },
+    { field: "family", headerName: "Family", flex: 1 },
+    { field: "health", headerName: "Health", flex: 1 },
+    { field: "freedom", headerName: "Freedom", flex: 1 },
+    { field: "generosity", headerName: "Generosity", flex: 1 },
+    { field: "trust", headerName: "Trust", flex: 1 },
   ];
 
   return (
