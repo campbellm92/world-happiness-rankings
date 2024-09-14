@@ -104,7 +104,7 @@ function Signup() {
                 />
               </Form.Group>
               {emailHasError && (
-                <p className="text-danger">
+                <p className="error-text">
                   Please enter a valid email address.
                 </p>
               )}
@@ -122,12 +122,12 @@ function Signup() {
                 />
               </Form.Group>
               {passwordHasError && (
-                <p className="text-danger">
+                <p className="error-text">
                   Password must be more than 8 characters long, include an
                   uppercase letter, a number, and a special character.
                 </p>
               )}
-              {error && <p className="text-danger">{error}</p>}
+              {error && <p className="error-text">{error}</p>}
               <Button
                 variant="success"
                 size="lg"

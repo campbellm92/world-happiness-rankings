@@ -99,7 +99,7 @@ function Login() {
                 />
               </Form.Group>
               {emailHasError && (
-                <p className="text-danger">
+                <p className="error-text">
                   There are no accounts linked with that email. Please check for
                   typos and try again.
                 </p>
@@ -118,11 +118,11 @@ function Login() {
                 />
               </Form.Group>
               {passwordHasError && (
-                <p className="text-danger">
+                <p className="error-text">
                   The password you have entered is incorrect. Please try again.
                 </p>
               )}
-              {error && <p className="text-danger">{error}</p>}
+              {error && <p className="error-text">{error}</p>}
               <Button
                 variant="success"
                 size="lg"
