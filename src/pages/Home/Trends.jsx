@@ -16,7 +16,7 @@ function Trends() {
       <Row>
         <Col xs={12}>
           <div className="m-5 trends-intro text-center">
-            <h1 className="trends-intro-header">Trends</h1>
+            <h1 className="data-intro-header">Trends</h1>
             <p className="fs-2">Explore happiness trends in your country.</p>
           </div>
         </Col>
@@ -46,7 +46,7 @@ function Trends() {
       </Form>
 
       <Row>
-        <Col xs={12} style={{ height: "400px", marginTop: "20px" }}>
+        <Col xs={12} style={{ height: "600px", marginTop: "20px" }}>
           <TrendChart query={query} />{" "}
         </Col>
       </Row>
