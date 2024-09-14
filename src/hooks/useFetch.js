@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import fetchWithAuth from "../utils/fetchWithAuth";
+// import fetchWithAuth from "../utils/fetchWithAuth";
 
-function useFetch(url, requiresAuth = false) {
+function useFetch(url) {
   // const cache = useRef({});
   const [data, setData] = useState([]);
   const [fetchPending, setFetchPending] = useState(false);
@@ -12,7 +12,7 @@ function useFetch(url, requiresAuth = false) {
     if (!url) return;
 
     console.log("Fetching data from URL:", url); // Add this
-    console.log("Headers being sent:", headers);
+    // console.log("Headers being sent:", headers);
     // const controller = new AbortController();
     // const { signal } = controller;
 
@@ -25,9 +25,11 @@ function useFetch(url, requiresAuth = false) {
         //   return;
         // }
 
-        const response = requiresAuth
-          ? await fetchWithAuth(url, { headers }) // REMOVED SIGNAL (ABORTCONTROLLER) FOR NOW _ CONSIDER PLACING BACK
-          : await fetch(url, { headers }); // REMOVED SIGNAL FOR NOW
+        // const response = requiresAuth
+        //   ? await fetchWithAuth(url, { headers }) // REMOVED SIGNAL (ABORTCONTROLLER) FOR NOW _ CONSIDER PLACING BACK
+        //   : await fetch(url, { headers }); // REMOVED SIGNAL FOR NOW
+
+        const response = await fetch(url, { headers });
 
         if (!response.ok) {
           console.error(`Fetch failed: Status ${response.status}`);
@@ -54,7 +56,7 @@ function useFetch(url, requiresAuth = false) {
     // return () => {
     //   controller.abort();
     // };
-  }, [url, headers, requiresAuth, fetchWithAuth]);
+  }, [url, headers]);
 
   return { data, fetchPending, error, setHeaders };
 }
