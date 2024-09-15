@@ -100,7 +100,7 @@ function FactorsMain() {
 
             <Row className="mt-4 text-center">
               <Col xs={12}>
-                <Button type="submit" variant="success" size="lg">
+                <Button type="submit" size="lg" className="explore-btn">
                   Explore
                 </Button>
               </Col>
@@ -108,7 +108,13 @@ function FactorsMain() {
           </Form>
 
           <Row>
-            <Col xs={12} style={{ height: "600px", marginTop: "20px" }}>
+            <Col
+              xs={12}
+              style={{
+                marginTop: "20px",
+                paddingBottom: "20px",
+              }}
+            >
               <FactorsTable query={query} />
             </Col>
           </Row>

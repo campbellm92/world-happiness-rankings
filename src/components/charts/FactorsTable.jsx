@@ -89,7 +89,7 @@ function FactorsTable({ query }) {
     <div
       id="MyGrid"
       className="ag-theme-custom"
-      style={{ height: "100%", width: "100%" }}
+      style={{ height: "600px", width: "100%" }}
     >
       <AgGridReact rowData={rowData} columnDefs={colDefs} />
     </div>
