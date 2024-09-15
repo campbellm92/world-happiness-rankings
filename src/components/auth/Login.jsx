@@ -123,12 +123,7 @@ function Login() {
                 </p>
               )}
               {error && <p className="error-text">{error}</p>}
-              <Button
-                variant="success"
-                size="lg"
-                type="submit"
-                className="auth-btn-custom"
-              >
+              <Button size="lg" type="submit" className="auth-btn-custom">
                 Log in
               </Button>
             </Form>

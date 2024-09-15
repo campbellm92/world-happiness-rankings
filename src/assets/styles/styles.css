@@ -255,6 +255,11 @@ body {
   color: var(--primary);
 }
 
+.auth-btn-custom {
+  background-color: var(--success);
+  border-color: var(--success);
+}
+
 .auth-btn-custom:hover {
   color: var(--text-color);
   background-color: transparent;
