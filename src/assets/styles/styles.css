@@ -95,7 +95,7 @@ body {
 /* CAROUSEL */
 
 .carousel-item-custom {
-  height: 20rem;
+  min-height: 30rem;
   position: relative;
   border-radius: 5px;
   background-size: cover;
@@ -114,17 +114,32 @@ body {
   background-color: var(--success);
 }
 
+.carousel-caption-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .carousel-caption-custom {
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
+  padding: 0 1rem;
   color: var(--text-color);
+  text-align: center;
 }
 
 .carousel-header-custom {
   font-family: "Bevan", sans-serif;
   color: var(--text-color);
+  font-size: 2rem;
+}
+
+.carousel-caption-custom p {
+  font-size: 1.25rem;
 }
 
 .carousel-button-custom {
@@ -155,6 +170,15 @@ body {
 
 /* SECTIONS */
 
+.hero-section,
+.first-rankings-section,
+.second-rankings-section,
+.factors-main-section,
+.factors-section {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
 .hero-section {
   height: 100vh;
 }
@@ -166,12 +190,12 @@ body {
 
 .second-rankings-section {
   background-color: var(--background);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .factors-main-section {
   background-color: var(--secondary);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .factors-section {
@@ -180,6 +204,18 @@ body {
 
 .data-intro-header {
   font-family: "Bevan", sans-serif;
+}
+
+.explore-btn {
+  background-color: var(--success);
+  border-color: var(--success);
+  font-weight: 500;
+}
+
+.explore-btn:hover {
+  background-color: var(--accent);
+  border: none;
+  border-width: 1.5px;
 }
 
 /* FACTORS - AUTH CARD (RADAR SECTION) */
