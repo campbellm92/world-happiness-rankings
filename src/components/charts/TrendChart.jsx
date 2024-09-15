@@ -53,32 +53,34 @@ function TrendChart({ query }) {
   const reversedDataArr = data.slice().reverse();
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <AreaChart
-        data={reversedDataArr}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-      >
-        <defs>
-          <linearGradient id="colorCountry" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#759c9e" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#759c9e" stopOpacity={0} />
-          </linearGradient>
-        </defs>
-        <XAxis dataKey="year" />
-        <YAxis />
-        <CartesianGrid strokeDasharray="3 3" />
-        <Tooltip />
-        <Area
-          type="monotone"
-          dataKey="score"
+    <div style={{ width: "100%", height: "600px" }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart
           data={reversedDataArr}
-          stroke="#333333"
-          fillOpacity={1}
-          fill="url(#colorCountry)"
-          name={query.country}
-        />
-      </AreaChart>
-    </ResponsiveContainer>
+          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorCountry" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#759c9e" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#759c9e" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="year" />
+          <YAxis domain={[0, 10]} />
+          <CartesianGrid strokeDasharray="3 3" />
+          <Tooltip />
+          <Area
+            type="monotone"
+            dataKey="score"
+            data={reversedDataArr}
+            stroke="#333333"
+            fillOpacity={1}
+            fill="url(#colorCountry)"
+            name={query.country}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
