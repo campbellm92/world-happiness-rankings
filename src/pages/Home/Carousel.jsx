@@ -6,13 +6,15 @@ function HeroCarousel() {
       <Carousel>
         <Carousel.Item className="carousel-item-custom one">
           <Carousel.Caption className="carousel-caption-custom">
-            <h3 className="carousel-header-custom">
-              Which are the happiest countries in the world?
-            </h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            <Button className="carousel-button-custom one">
-              Find out more
-            </Button>
+            <div className="carousel-caption-content">
+              <h3 className="carousel-header-custom">
+                Which are the happiest countries in the world?
+              </h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <Button className="carousel-button-custom one">
+                Find out more
+              </Button>
+            </div>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className="carousel-item-custom two">
