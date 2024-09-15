@@ -53,7 +53,7 @@ function Rankings() {
                       onChange={(e) => setCountry(e.target.value)}
                     />
                   </Form.Group>
-                  <Button variant="success" size="lg" type="submit">
+                  <Button size="lg" type="submit" className="explore-btn">
                     Explore
                   </Button>
                 </Form>
