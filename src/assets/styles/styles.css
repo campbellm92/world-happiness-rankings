@@ -36,6 +36,10 @@ body {
   color: var(--warning);
 }
 
+.success-text {
+  color: var(--success);
+}
+
 /* NAVBAR */
 
 .brand-custom {
