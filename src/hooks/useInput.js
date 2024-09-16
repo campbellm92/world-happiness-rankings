@@ -17,6 +17,7 @@ function useInput(type) {
   } else {
     valueIsValid = false;
   }
+
   const hasError = !valueIsValid && isTouched;
 
   const valueChangeHandler = (e) => {
