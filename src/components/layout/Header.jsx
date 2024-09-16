@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   Container,
   Nav,
@@ -13,12 +13,14 @@ import { useAuth } from "../../context/authProvider";
 function Header() {
   const { token, logout } = useAuth();
   const [loggedOutToast, setLoggedOutToast] = useState(false);
+  const navigate = useNavigate();
 
   const isLoggedIn = !!token;
 
   const handleLogout = () => {
     logout();
     setLoggedOutToast(true);
+    navigate("/");
   };
 
   return (
