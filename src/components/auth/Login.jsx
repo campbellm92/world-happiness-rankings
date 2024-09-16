@@ -28,14 +28,21 @@ function Login() {
   } = useInput("password");
 
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
   const { setToken } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailIsValid || !passwordIsValid) {
+      setError(
+        "The email address or password you've entered are invalid. Please try again."
+      );
       return;
     }
+
+    setError(null);
+    setSuccess(null);
 
     const API_URL = `https://d2h6rsg43otiqk.cloudfront.net/prod`;
     const url = `${API_URL}/user/login`;
@@ -52,9 +59,15 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        console.log(data.token);
         setToken(data.token);
-        navigate("/");
+        setSuccess("You've successfully logged in. Redirecting to home...");
+        setError(null);
+        emailReset();
+        passwordReset();
+
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
       } else {
         setError(data.message || "Login failed. Please try again.");
       }
@@ -84,7 +97,7 @@ function Login() {
             </span>
           </Col>
           <Col xs={12} md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
-            <Form onSubmit={handleSubmit} className="w-100">
+            <Form onSubmit={handleSubmit} className="w-100" noValidate>
               <Form.Group className="mb-3" controlId="formEmail">
                 <h3 className="mb-4 form-header-custom">Log in</h3>
                 <Form.Label className="fs-4">Email</Form.Label>
@@ -95,13 +108,11 @@ function Login() {
                   placeholder="Please enter your email address"
                   onChange={emailChangeHandler}
                   onBlur={emailBlurHandler}
-                  required
                 />
               </Form.Group>
               {emailHasError && (
                 <p className="error-text">
-                  There are no accounts linked with that email. Please check for
-                  typos and try again.
+                  Please enter a valid email address.
                 </p>
               )}
 
@@ -114,7 +125,6 @@ function Login() {
                   placeholder="Please enter your password"
                   onChange={passwordChangeHandler}
                   onBlur={passwordBlurHandler}
-                  required
                 />
               </Form.Group>
               {passwordHasError && (
@@ -122,6 +132,7 @@ function Login() {
                   The password you have entered is incorrect. Please try again.
                 </p>
               )}
+              {success && <p className="success-text">{success}</p>}
               {error && <p className="error-text">{error}</p>}
               <Button size="lg" type="submit" className="auth-btn-custom">
                 Log in

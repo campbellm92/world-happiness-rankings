@@ -1,8 +1,6 @@
 //remove the below comment before using
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../../context/authProvider";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import useInput from "../../hooks/useInput";
 
@@ -28,14 +26,18 @@ function Signup() {
   } = useInput("password");
 
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  // const { setToken } = useAuth();
+  const [success, setSuccess] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailIsValid || !passwordIsValid) {
+      setError("You must enter a valid email address and password.");
+      setSuccess(null);
       return;
     }
+
+    setError(null);
+    setSuccess(null);
 
     const API_URL = `https://d2h6rsg43otiqk.cloudfront.net/prod`;
     const url = `${API_URL}/user/register`;
@@ -53,16 +55,22 @@ function Signup() {
       console.log("Res data:", data);
 
       if (response.ok) {
-        // console.log("Token:", data.token);
-        // setToken(data.token);
-        navigate("/"); // possible change to dashboard
+        setSuccess(
+          "You've successfully created an account. You can now log in."
+        );
+        setError(null);
+        emailReset();
+        passwordReset();
       } else if (data.message === "User already exists") {
         setError("An account with that email address already exists.");
+        setSuccess(null);
       } else {
         setError(data.message || "Sign up failed. Please try again.");
+        setSuccess(null);
       }
     } catch (error) {
       setError("Request failed. Please try again.");
+      setSuccess(null);
     }
     emailReset();
     passwordReset();
@@ -87,7 +95,7 @@ function Signup() {
             </span>
           </Col>
           <Col xs={12} md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
-            <Form onSubmit={handleSubmit} className="w-100">
+            <Form onSubmit={handleSubmit} className="w-100" noValidate>
               <Form.Group className="mb-3" controlId="formEmail">
                 <h3 className="mb-4 form-header-custom">
                   Register to explore the World Happiness Report further
@@ -100,7 +108,6 @@ function Signup() {
                   placeholder="Please enter your email address"
                   onChange={emailChangeHandler}
                   onBlur={emailBlurHandler}
-                  required
                 />
               </Form.Group>
               {emailHasError && (
@@ -118,7 +125,6 @@ function Signup() {
                   placeholder="Please create a password"
                   onChange={passwordChangeHandler}
                   onBlur={passwordBlurHandler}
-                  required
                 />
               </Form.Group>
               {passwordHasError && (
@@ -127,6 +133,7 @@ function Signup() {
                   uppercase letter, a number, and a special character.
                 </p>
               )}
+              {success && <p className="success-text">{success}</p>}
               {error && <p className="error-text">{error}</p>}
               <Button size="lg" type="submit" className="auth-btn-custom">
                 Register
