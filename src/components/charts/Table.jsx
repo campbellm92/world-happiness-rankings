@@ -63,7 +63,7 @@ function Table({ query }) {
     <div
       id="MyGrid"
       className="ag-theme-custom"
-      style={{ height: "100%", width: "100%" }}
+      style={{ height: "500px", width: "100%" }}
     >
       <AgGridReact rowData={rowData} columnDefs={colDefs} />
     </div>
