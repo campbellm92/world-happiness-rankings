@@ -3,7 +3,7 @@ import HeroCarousel from "./Carousel";
 import Rankings from "./Rankings";
 import Trends from "./Trends";
 import FactorsMain from "./FactorsMain";
-import Factors from "./Factors";
+// import Factors from "./Factors";
 
 function Home() {
   return (
@@ -21,9 +21,9 @@ function Home() {
       <section className="factors-main-section">
         <FactorsMain />
       </section>
-      <section className="factors-section">
+      {/* <section className="factors-section">
         <Factors />
-      </section>
+      </section> */}
     </main>
   );
 }
