@@ -1,9 +1,26 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import { Nav, Navbar } from "react-bootstrap/";
+import {
+  Container,
+  Nav,
+  Navbar,
+  Toast,
+  ToastContainer,
+} from "react-bootstrap/";
 import logo from "../../assets/images/logo.svg";
+import { useAuth } from "../../context/authProvider";
 
 function Header() {
+  const { token, logout } = useAuth();
+  const [loggedOutToast, setLoggedOutToast] = useState(false);
+
+  const isLoggedIn = !!token;
+
+  const handleLogout = () => {
+    logout();
+    setLoggedOutToast(true);
+  };
+
   return (
     <>
       <Navbar bg="background" data-bs-theme="dark" expand="md">
@@ -19,24 +36,52 @@ function Header() {
             className="justify-content-end"
           >
             <Nav>
-              <Nav.Link
-                as={NavLink}
-                to="/signup"
-                className="nav mx-2 nav-link-custom"
-              >
-                SIGN UP
-              </Nav.Link>
-              <Nav.Link
-                as={NavLink}
-                to="/login"
-                className="nav mx-2 nav-link-custom"
-              >
-                LOGIN
-              </Nav.Link>
+              {!isLoggedIn && (
+                <>
+                  <Nav.Link
+                    as={NavLink}
+                    to="/signup"
+                    className="nav mx-2 nav-link-custom"
+                  >
+                    SIGN UP
+                  </Nav.Link>
+                  <Nav.Link
+                    as={NavLink}
+                    to="/login"
+                    className="nav mx-2 nav-link-custom"
+                  >
+                    LOGIN
+                  </Nav.Link>
+                </>
+              )}
+              {isLoggedIn && (
+                <Nav.Link
+                  as={NavLink}
+                  to="/"
+                  className="nav mx-2 nav-link-custom"
+                  onClick={handleLogout}
+                >
+                  LOGOUT
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <ToastContainer position="bottom-end" className="p-3">
+        <Toast
+          onClose={() => setLoggedOutToast(false)}
+          show={loggedOutToast}
+          delay={3000}
+          autohide
+        >
+          <Toast.Header className="toast-header">
+            <strong className="me-auto">Successful logout</strong>
+          </Toast.Header>
+          <Toast.Body className="toast-body">Thanks for visiting.</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </>
   );
 }

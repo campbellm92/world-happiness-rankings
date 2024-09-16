@@ -15,10 +15,15 @@ function AuthProvider({ children }) {
     }
   };
 
+  const logout = () => {
+    setToken(null);
+  };
+
   const contextValue = useMemo(
     () => ({
       token,
       setToken,
+      logout,
     }),
     [token]
   );
