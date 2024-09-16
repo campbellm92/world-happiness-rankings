@@ -270,6 +270,10 @@ body {
   border-color: var(--success);
 }
 
+.toast-header {
+  background-color: var(--success);
+}
+
 /* FOOTER */
 
 .footer-text-custom {
