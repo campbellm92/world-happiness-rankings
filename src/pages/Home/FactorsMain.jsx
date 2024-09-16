@@ -1,28 +1,20 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
 import FactorsTable from "../../components/charts/FactorsTable";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authProvider";
 
 function FactorsMain() {
-  const [country, setCountry] = useState("Finland");
+  const [country, setCountry] = useState("");
   const [year, setYear] = useState("2020");
-  const [limit, setLimit] = useState("1");
+  const [limit, setLimit] = useState("25");
   const [query, setQuery] = useState({
-    country: "Finland",
+    country: "",
     year: "2020",
-    limit: "1",
+    limit: "25",
   });
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setIsLoggedIn(false);
-    } else {
-      setIsLoggedIn(true);
-    }
-  }, [navigate]);
+  const { token } = useAuth();
+  const isLoggedIn = !!token;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,9 +39,9 @@ function FactorsMain() {
         <Row>
           <Col xs={12} className="text-center">
             <div className="m-5">
-              <h1 className="trends-intro-header">
+              <h4 className="data-intro-header">
                 You need to be logged in to view this data
-              </h1>
+              </h4>
               <p>
                 <a href="/login">Log in</a> to access the data.
               </p>
@@ -91,7 +83,7 @@ function FactorsMain() {
                     placeholder="Limit"
                     value={limit}
                     min={1}
-                    max={100}
+                    max={160}
                     onChange={(e) => setLimit(e.target.value)}
                   />
                 </Form.Group>

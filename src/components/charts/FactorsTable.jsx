@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import Spinner from "react-bootstrap/Spinner";
 import "../../assets/styles/ag-grid-theme-builder-factors-table.css";
+import { useAuth } from "../../context/authProvider";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -34,10 +35,12 @@ function FactorsTable({ query }) {
     setHeaders,
   } = useFetch(apiURL);
 
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
+
+  const { token } = useAuth();
 
   useEffect(() => {
-    if (apiURL) {
+    if (apiURL && token) {
       setHeaders({
         "Content-Type": "application/json",
         "X-API-KEY": API_KEY,
@@ -45,6 +48,14 @@ function FactorsTable({ query }) {
       });
     }
   }, [setHeaders, apiURL, token]);
+
+  if (!token) {
+    return (
+      <div className="error-text">
+        You need to be logged in to view this data.
+      </div>
+    );
+  }
 
   if (fetchPending) {
     return (
@@ -77,12 +88,12 @@ function FactorsTable({ query }) {
       flex: 1,
     },
     { field: "score", headerName: "📈 Score", flex: 1 },
-    { field: "economy", headerName: "Economy", flex: 1 },
-    { field: "family", headerName: "Family", flex: 1 },
-    { field: "health", headerName: "Health", flex: 1 },
-    { field: "freedom", headerName: "Freedom", flex: 1 },
-    { field: "generosity", headerName: "Generosity", flex: 1 },
-    { field: "trust", headerName: "Trust", flex: 1 },
+    { field: "economy", headerName: "🪙 Economy", flex: 1 },
+    { field: "family", headerName: "🧑‍🧑‍🧒‍🧒 Family", flex: 1 },
+    { field: "health", headerName: "🏥 Health", flex: 1 },
+    { field: "freedom", headerName: "⛓️‍💥 Freedom", flex: 1 },
+    { field: "generosity", headerName: "🙌 Generosity", flex: 1 },
+    { field: "trust", headerName: "🤝 Trust", flex: 1 },
   ];
 
   return (
