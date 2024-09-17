@@ -52,7 +52,12 @@ function Rankings() {
             </Form>
           </Col>
 
-          <Col xs={12} md={6} className="p-4">
+          <Col
+            xs={12}
+            md={6}
+            className="p-4"
+            style={{ paddingBottom: "20px", overflow: "auto" }}
+          >
             <Table query={query} />
           </Col>
         </Row>
