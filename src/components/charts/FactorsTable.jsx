@@ -14,7 +14,7 @@ function FactorsTable({ query }) {
 
   if (!query.year) {
     return (
-      <p className="mt-4 fs-4 text-center error-text">You must enter a year</p>
+      <p className="mt-4 fs-5 text-center error-text">You must enter a year</p>
     );
   }
 
@@ -34,8 +34,6 @@ function FactorsTable({ query }) {
     error,
     setHeaders,
   } = useFetch(apiURL);
-
-  // const token = localStorage.getItem("token");
 
   const { token } = useAuth();
 
