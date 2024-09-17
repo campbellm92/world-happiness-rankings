@@ -2,7 +2,7 @@ import useFetch from "../../hooks/useFetch";
 import { useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import Spinner from "react-bootstrap/Spinner";
-import "../../assets/styles/ag-grid-theme-builder.css";
+import "../../assets/styles/ag-grid-theme-builder-rankings-table.css";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -63,7 +63,7 @@ function Table({ query }) {
     <div
       id="MyGrid"
       className="ag-theme-custom"
-      style={{ height: "500px", width: "100%" }}
+      style={{ height: "700px", width: "100%" }}
     >
       <AgGridReact rowData={rowData} columnDefs={colDefs} />
     </div>
