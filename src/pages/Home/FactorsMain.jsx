@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap/";
+import useValidateSearch from "../../hooks/useValidateSearch";
 import FactorsTable from "../../components/charts/FactorsTable";
+import { Container, Row, Col, Form, Button } from "react-bootstrap/";
 import { useAuth } from "../../context/authProvider";
 
 function FactorsMain() {
@@ -16,9 +17,13 @@ function FactorsMain() {
   const { token } = useAuth();
   const isLoggedIn = !!token;
 
+  const { validateInputs, error } = useValidateSearch(country, year, limit);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setQuery({ country, year, limit });
+    if (validateInputs()) {
+      setQuery({ country, year, limit });
+    }
   };
 
   return (
@@ -50,10 +55,11 @@ function FactorsMain() {
         </Row>
       ) : (
         <>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} noValidate>
             <Row className="justify-content-center">
-              <Col xs={2}>
+              <Col xs={12} sm={6} md={4} lg={3} className="mb-3">
                 <Form.Group controlId="formCountry">
+                  <Form.Label className="fs-5">Country</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter a country"
@@ -63,8 +69,10 @@ function FactorsMain() {
                 </Form.Group>
               </Col>
 
-              <Col xs={2}>
+              <Col xs={12} sm={6} md={4} lg={3} className="mb-3">
                 <Form.Group controlId="formYear">
+                  <Form.Label className="fs-5">Year</Form.Label>
+
                   <Form.Control
                     type="number"
                     placeholder="Year"
@@ -76,8 +84,9 @@ function FactorsMain() {
                 </Form.Group>
               </Col>
 
-              <Col xs={2}>
+              <Col xs={12} sm={6} md={4} lg={3}>
                 <Form.Group controlId="formLimit">
+                  <Form.Label className="fs-5">Results limit</Form.Label>
                   <Form.Control
                     type="number"
                     placeholder="Limit"
@@ -98,6 +107,8 @@ function FactorsMain() {
               </Col>
             </Row>
           </Form>
+
+          {error && <p className="mt-4 fs-5 text-center error-text">{error}</p>}
 
           <Row>
             <Col
