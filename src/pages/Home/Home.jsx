@@ -1,5 +1,5 @@
 import HeroImage from "./Hero";
-import HeroIntro from "./HeroIntro";
+import HeroCards from "./HeroCards";
 import Rankings from "./Rankings";
 import Trends from "./Trends";
 import FactorsMain from "./FactorsMain";
@@ -10,16 +10,16 @@ function Home() {
     <main className="flex-grow-1">
       <section className="hero-section">
         <HeroImage />
-        <HeroIntro />
+        <HeroCards />
         {/* <HeroCarousel /> */}
       </section>
-      <section className="mt-5 first-rankings-section">
+      <section id="rankings" className="mt-5 first-rankings-section">
         <Rankings />
       </section>
-      <section className="second-rankings-section">
+      <section id="trends" className="second-rankings-section">
         <Trends />
       </section>
-      <section className="factors-main-section">
+      <section id="factors" className="factors-main-section">
         <FactorsMain />
       </section>
       {/* <section className="factors-section">
