@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useValidateSearch from "../../hooks/useValidateSearch";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
 import TrendChart from "../../components/charts/TrendChart";
 
@@ -6,11 +7,18 @@ function Trends() {
   const [country, setCountry] = useState("Finland");
   const [query, setQuery] = useState({ country: "Finland" });
 
+  const { validateInputs, error } = useValidateSearch(country);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setQuery({ country });
-  };
+    if (!country.trim()) {
+      setQuery({ country: "" });
+    }
 
+    if (validateInputs()) {
+      setQuery({ country });
+    }
+  };
   return (
     <Container fluid>
       <Row>
@@ -24,8 +32,10 @@ function Trends() {
 
       <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center">
-          <Col xs={2}>
+          <Col xs={12} sm={6} md={4} lg={3}>
             <Form.Group controlId="formCountry1">
+              <Form.Label className="fs-5">Country</Form.Label>
+
               <Form.Control
                 type="text"
                 placeholder="Enter a country"
@@ -44,6 +54,8 @@ function Trends() {
           </Col>
         </Row>
       </Form>
+
+      {error && <p className="mt-4 fs-5 text-center error-text">{error}</p>}
 
       <Row>
         <Col xs={12} style={{ marginTop: "20px" }}>

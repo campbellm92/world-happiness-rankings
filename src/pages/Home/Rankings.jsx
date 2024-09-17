@@ -1,15 +1,21 @@
 import { useState } from "react";
+import useValidateSearch from "../../hooks/useValidateSearch";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
-import Table from "../../components/charts/Table";
+import RankingsTable from "../../components/charts/RankingsTable";
 
 function Rankings() {
   const [country, setCountry] = useState("");
   const [year, setYear] = useState("2020");
   const [query, setQuery] = useState({ country: "", year: "2020" });
 
+  const { validateInputs, error } = useValidateSearch(country, year);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setQuery({ country, year });
+
+    if (validateInputs()) {
+      setQuery({ country, year });
+    }
   };
 
   return (
@@ -25,7 +31,7 @@ function Rankings() {
                 comparison with others over the years.
               </p>
             </div>
-            <Form className="pb-5 ps-4 pe-4" onSubmit={handleSubmit}>
+            <Form className="pb-5 ps-4 pe-4" onSubmit={handleSubmit} noValidate>
               <Form.Group className="mb-3" controlId="formYear">
                 <Form.Label className="fs-5">Year</Form.Label>
                 <Form.Control
@@ -50,6 +56,10 @@ function Rankings() {
                 Explore
               </Button>
             </Form>
+
+            {error && (
+              <p className="mt-4 fs-5 text-center error-text">{error}</p>
+            )}
           </Col>
 
           <Col
@@ -58,7 +68,7 @@ function Rankings() {
             className="p-4"
             style={{ paddingBottom: "20px", overflow: "auto" }}
           >
-            <Table query={query} />
+            <RankingsTable query={query} />
           </Col>
         </Row>
       </Container>
