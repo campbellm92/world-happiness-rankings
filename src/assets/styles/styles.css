@@ -54,6 +54,8 @@ body {
   height: 6rem;
 }
 
+/* need to figure out how I can avoid using !important here */
+
 .nav-link-custom {
   color: var(--accent) !important;
   font-weight: bold;
@@ -96,8 +98,36 @@ body {
   background-color: rgba(252, 232, 197, 0.95);
 }
 
-/* CAROUSEL */
+/* HERO CARDS */
 
+.hero-card {
+  margin: 10px;
+  background-color: inherit;
+  border-color: var(--secondary);
+  border-width: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero-card-title {
+  font-size: 2rem;
+  font-family: "Bevan", sans-serif;
+}
+
+.hero-card-btn {
+  background-color: var(--accent);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.hero-card-btn:hover {
+  background-color: var(--secondary);
+  border: none;
+}
+
+/* CAROUSEL */
+/* 
 .carousel-item-custom {
   min-height: 30rem;
   position: relative;
@@ -125,7 +155,6 @@ body {
 }
 
 .carousel-caption-custom {
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -170,7 +199,7 @@ body {
   color: var(--success);
   background: var(--text-color);
   border: none;
-}
+} */
 
 /* SECTIONS */
 
@@ -184,12 +213,12 @@ body {
 }
 
 .hero-section {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .first-rankings-section {
   background-color: var(--secondary);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .second-rankings-section {
