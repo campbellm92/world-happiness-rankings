@@ -1,12 +1,12 @@
-import useFetch from "../../hooks/useFetch";
 import { useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
 import { AgGridReact } from "ag-grid-react";
 import Spinner from "react-bootstrap/Spinner";
 import "../../assets/styles/ag-grid-theme-builder-rankings-table.css";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-function Table({ query }) {
+function RankingsTable({ query }) {
   let apiURL = null;
 
   if (query.year && query.country) {
@@ -63,11 +63,11 @@ function Table({ query }) {
     <div
       id="MyGrid"
       className="ag-theme-custom"
-      style={{ height: "700px", width: "100%" }}
+      style={{ height: "800px", width: "100%" }}
     >
       <AgGridReact rowData={rowData} columnDefs={colDefs} />
     </div>
   );
 }
 
-export default Table;
+export default RankingsTable;
