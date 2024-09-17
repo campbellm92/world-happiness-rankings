@@ -79,7 +79,7 @@ body {
 
 .hero-custom {
   background-image: url("../images/happy-people-jumping.jpg");
-  height: 400px;
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -95,7 +95,7 @@ body {
 }
 
 .hero-mask {
-  background-color: rgba(252, 232, 197, 0.95);
+  background-color: rgba(252, 232, 197, 0.97);
 }
 
 /* HERO CARDS */
