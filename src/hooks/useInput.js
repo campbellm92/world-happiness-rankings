@@ -1,4 +1,3 @@
-// to be used with singup/login form component
 import { useState } from "react";
 
 function useInput(type) {
