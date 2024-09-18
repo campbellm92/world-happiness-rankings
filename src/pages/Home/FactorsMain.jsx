@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useValidateSearch from "../../hooks/useValidateSearch";
 import FactorsTable from "../../components/charts/FactorsTable";
 import { Container, Row, Col, Form, Button } from "react-bootstrap/";
@@ -43,12 +43,15 @@ function FactorsMain() {
       {!isLoggedIn ? (
         <Row>
           <Col xs={12} className="text-center">
-            <div className="m-5">
-              <h4 className="data-intro-header">
+            <div className="m-3">
+              <h3 className="data-intro-header">
                 You need to be logged in to view this data
-              </h4>
-              <p>
-                <a href="/login">Log in</a> to access the data.
+              </h3>
+              <p className="fs-4">
+                <a href="/login" className="login-text">
+                  Log in
+                </a>{" "}
+                to access the data.
               </p>
             </div>
           </Col>
