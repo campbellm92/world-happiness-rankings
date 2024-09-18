@@ -4,19 +4,20 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap/";
 import TrendChart from "../../components/charts/TrendChart";
 
 function Trends() {
-  const [country, setCountry] = useState("Finland");
-  const [query, setQuery] = useState({ country: "Finland" });
+  const [country, setCountry] = useState("Australia");
+  const [query, setQuery] = useState({ country: "Australia" });
 
   const { validateInputs, error } = useValidateSearch(country);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!country.trim()) {
-      setQuery({ country: "" });
-    }
+
+    const validatedCountry =
+      country.trim() === "" ? "Australia" : country.trim();
 
     if (validateInputs()) {
-      setQuery({ country });
+      setQuery({ country: validatedCountry });
+      setCountry(validatedCountry);
     }
   };
   return (
