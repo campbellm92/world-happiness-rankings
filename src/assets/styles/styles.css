@@ -25,7 +25,6 @@ body {
   min-height: 100vh;
 }
 
-/* Override Bootstrap default variables */
 body {
   background-color: var(--background);
   color: var(--text-color);
@@ -126,6 +125,21 @@ body {
   border: none;
 }
 
+.hero-card-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.hero-card-btn:active,
+.hero-card-btn:active:focus,
+.hero-card-btn.active {
+  background-color: var(--success);
+  border-color: inherit;
+  color: inherit;
+  box-shadow: none;
+  outline: none;
+}
+
 /* CAROUSEL */
 /* 
 .carousel-item-custom {
@@ -213,26 +227,22 @@ body {
 }
 
 .hero-section {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .first-rankings-section {
   background-color: var(--secondary);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .second-rankings-section {
   background-color: var(--background);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .factors-main-section {
   background-color: var(--secondary);
-  min-height: 100vh;
-}
-
-.factors-section {
-  background-color: var(--background);
+  min-height: 100dvh;
 }
 
 .data-intro-header {
@@ -251,37 +261,27 @@ body {
   border-width: 1.5px;
 }
 
-/* FACTORS - AUTH CARD (RADAR SECTION) */
+.explore-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
 
-.factors-auth-card {
+.explore-btn:active,
+.explore-btn:active:focus,
+.explore-btn-custom.active {
   background-color: inherit;
-  width: 450px;
-  height: auto;
+  border-color: inherit;
+  color: inherit;
+  box-shadow: none;
+  outline: none;
 }
 
-.factors-signup-btn {
-  background-color: var(--accent);
-  border-color: var(--accent);
+.login-text {
   font-weight: bold;
+  color: var(--text-color);
 }
 
-.factors-signup-btn:hover {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-.factors-login-btn {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  font-weight: bold;
-}
-
-.factors-login-btn:hover {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-/* AUTH */
+/* AUTH  */
 
 .form-header-custom {
   font-weight: 900;
@@ -297,6 +297,21 @@ body {
   color: var(--text-color);
   background-color: transparent;
   border-color: var(--success);
+}
+
+.auth-btn-custom:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.auth-btn-custom:active,
+.auth-btn-custom:active:focus,
+.auth-btn-custom.active {
+  background-color: inherit;
+  border-color: inherit;
+  color: inherit;
+  box-shadow: none;
+  outline: none;
 }
 
 .toast-header {
