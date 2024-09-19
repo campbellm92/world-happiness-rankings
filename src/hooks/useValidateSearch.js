@@ -22,14 +22,12 @@ function useValidateSearch(country, year, limit) {
   const validateInputs = () => {
     setError("");
 
-    const yearNumber = parseInt(year);
-    if (yearNumber < 2015 || yearNumber > 2020) {
+    if (year < 2015 || year > 2020) {
       setError("Please enter a year between 2015 and 2020.");
       return false;
     }
 
-    const limitNumber = parseInt(limit);
-    if (limitNumber < 1 || limitNumber > 160) {
+    if (limit < 1 || limit > 160) {
       setError("Please enter a results limit between 1 and 160");
       return false;
     }
@@ -39,15 +37,14 @@ function useValidateSearch(country, year, limit) {
       return false;
     }
 
-    if (country.trim() !== "") {
-      if (
-        !countriesData
-          .map((c) => c.toLowerCase())
-          .includes(country.trim().toLowerCase())
-      ) {
-        setError("Please enter a valid country name.");
-        return false;
-      }
+    if (
+      country.trim() !== "" &&
+      !countriesData
+        .map((c) => c.toLowerCase())
+        .includes(country.trim().toLowerCase())
+    ) {
+      setError("Please enter a valid country name.");
+      return false;
     }
 
     if (countriesError) {
