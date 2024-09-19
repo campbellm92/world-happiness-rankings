@@ -1,4 +1,3 @@
-//remove the below comment before using
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
