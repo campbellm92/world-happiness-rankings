@@ -8,25 +8,18 @@ import { useAuth } from "../../context/authProvider";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function FactorsTable({ query }) {
-  let apiURL = `https://d2h6rsg43otiqk.cloudfront.net/prod/factors/${query.year}`;
-
-  const params = new URLSearchParams();
-
-  if (!query.year) {
-    return (
-      <p className="mt-4 fs-5 text-center error-text">You must enter a year</p>
-    );
-  }
+  const url = new URL(
+    `https://d2h6rsg43otiqk.cloudfront.net/prod/factors/${query.year}`
+  );
 
   if (query.limit) {
-    params.append("limit", query.limit);
+    url.searchParams.append("limit", query.limit);
   }
   if (query.country) {
-    params.append("country", query.country);
+    url.searchParams.append("country", query.country);
   }
-  if (params.toString()) {
-    apiURL += `?${params.toString()}`;
-  }
+
+  const apiURL = url.toString();
 
   const {
     data: rowData = [],
@@ -46,6 +39,12 @@ function FactorsTable({ query }) {
       });
     }
   }, [setHeaders, apiURL, token]);
+
+  if (!query.year) {
+    return (
+      <p className="mt-4 fs-5 text-center error-text">You must enter a year</p>
+    );
+  }
 
   if (!token) {
     return (
