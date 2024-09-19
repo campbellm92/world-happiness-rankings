@@ -1,4 +1,3 @@
-// remove below comment before using
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
