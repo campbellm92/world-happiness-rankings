@@ -3,7 +3,6 @@ import HeroCards from "./HeroCards";
 import Rankings from "./Rankings";
 import Trends from "./Trends";
 import FactorsMain from "./FactorsMain";
-// import Factors from "./Factors";
 
 function Home() {
   return (
@@ -11,7 +10,6 @@ function Home() {
       <section className="hero-section">
         <HeroImage />
         <HeroCards />
-        {/* <HeroCarousel /> */}
       </section>
       <section id="rankings" className="mt-5 first-rankings-section">
         <Rankings />
@@ -22,9 +20,6 @@ function Home() {
       <section id="factors" className="factors-main-section">
         <FactorsMain />
       </section>
-      {/* <section className="factors-section">
-        <Factors />
-      </section> */}
     </main>
   );
 }
