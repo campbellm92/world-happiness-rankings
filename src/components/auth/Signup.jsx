@@ -50,8 +50,8 @@ function Signup() {
         },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await response.json();
-      console.log("Res data:", data);
 
       if (response.ok) {
         setSuccess(
