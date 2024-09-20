@@ -15,7 +15,7 @@ function FactorsMain() {
   });
 
   const { token } = useAuth();
-  const isLoggedIn = !!token;
+  const isLoggedIn = token ? true : false;
 
   const { validateInputs, error } = useValidateSearch(country, year, limit);
 
