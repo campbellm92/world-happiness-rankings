@@ -21,9 +21,6 @@ function useFetch(url) {
           setFetchPending(false);
           return;
         }
-        // const response = requiresAuth
-        //   ? await fetchWithAuth(url, { headers }) // REMOVED SIGNAL (ABORTCONTROLLER) FOR NOW _ CONSIDER PLACING BACK
-        //   : await fetch(url, { headers }); // REMOVED SIGNAL FOR NOW
 
         const response = await fetch(url, { headers, signal });
 
