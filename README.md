@@ -16,4 +16,4 @@ This is (currently) a frontend only app. The project utilises the following tech
 - consider creating a backend with Node
 - consider hosting
 
-\*\*\_For more detailed information including how this application was created and a brief user guide, please download the report contained in the report directory of this project.\_\*\*
+**_For more detailed information including how this application was created and a brief user guide, please download the report contained in the report directory of this project._**
