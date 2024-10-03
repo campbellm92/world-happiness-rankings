@@ -1,8 +1,13 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const app = express();
 
-const originWhitelist = ["http://localhost:5173", "https://whr.mattdev.it"];
+const originWhitelist = [
+  "http://localhost:5173",
+  "https://whr.mattdev.it",
+  "http://localhost:3001",
+];
 const corsOptions = {
   origin: function (origin, callback) {
     if (originWhitelist.indexOf(origin) !== -1) {
@@ -14,11 +19,12 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(express.static(path.join(__dirname, "build")));
 
-app.get("/", (req, res) => {
-  res.json({ message: "Hello from the backend!" });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.listen(8080, () => {
-  console.log("Server started on port 8080.");
+app.listen(3001, () => {
+  console.log("Server started on port 3001.");
 });
