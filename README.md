@@ -2,6 +2,12 @@
 
 This is a React-based data visualisation project that consumes world happiness data from an API. The project was completed as part of my studies at the Queensland University of Technology.
 
+<p>
+  <img src="src/assets/images/world-happiness-rankings-1.png" alt="WHR hero" width="300" />
+  <img src="src/assets/images/world-happiness-rankings-2.png" alt="WHR trends" width="300" />
+  <img src="src/assets/images/world-happiness-rankings-3.png" alt="WHR rankings" width="300" />
+</p>
+
 ## Tech
 
 This is (currently) a frontend only app. The project utilises the following technologies:
