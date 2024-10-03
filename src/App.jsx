@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/styles.css";
@@ -9,6 +10,24 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 
 function App() {
+  const fetchBackend = async () => {
+    try {
+      const appURL = import.meta.env.VITE_APP_URL;
+      const response = await fetch(`${appURL}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBackend();
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="d-flex flex-column min-vh-100">
