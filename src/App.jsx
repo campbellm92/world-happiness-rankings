@@ -12,8 +12,7 @@ import Login from "./components/auth/Login";
 function App() {
   const fetchBackend = async () => {
     try {
-      const appURL = import.meta.env.VITE_APP_URL;
-      const response = await fetch(`${appURL}`);
+      const response = await fetch(`/api`);
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
