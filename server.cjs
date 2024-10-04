@@ -10,7 +10,7 @@ const originWhitelist = [
 ];
 const corsOptions = {
   origin: function (origin, callback) {
-    if (originWhitelist.indexOf(origin) !== -1) {
+    if (!origin || originWhitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -19,12 +19,18 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from the backend!" });
 });
 
-app.listen(3001, () => {
-  console.log("Server started on port 3001.");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server started on ${PORT}`);
 });
