@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import useInput from "../../hooks/useInput";
+import image from "../../assets/images/happy-boy.jpg";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -86,11 +87,7 @@ function Signup() {
           {" "}
           <Col xs={12} md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
             <span className="border rounded">
-              <img
-                src="../../src/assets/images/happy-boy.jpg"
-                alt="Happy boy"
-                className="img-fluid rounded"
-              />
+              <img src={image} alt="Happy boy" className="img-fluid rounded" />
             </span>
           </Col>
           <Col xs={12} md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">

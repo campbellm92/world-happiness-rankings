@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authProvider";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import useInput from "../../hooks/useInput";
+import image from "../../assets/images/happy-people.jpg";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -90,7 +91,7 @@ function Login() {
           <Col xs={12} md={6} className="d-flex flex-grow-1 mb-4 mb-md-0">
             <span className="border rounded">
               <img
-                src="../../src/assets/images/happy-people.jpg"
+                src={image}
                 alt="Happy people"
                 className="img-fluid rounded auth-img-custom"
               />
